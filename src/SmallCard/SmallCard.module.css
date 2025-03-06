@@ -1,0 +1,35 @@
+
+
+.Container{
+    display: flex;
+    flex-flow: column;
+    width: 200px;
+    height: fit-content;
+    gap: 10px;
+    padding: 10px;
+
+     box-shadow: 0px 0px 14px 4px;
+     min-width: 250px;
+}
+
+.img{
+    width: 100%;
+
+}
+.h3{
+    font-size: 14px;
+}
+.span{
+    font-size: 11px;
+}
+.Container button{
+    background-color: rgb(10, 66, 85);
+    cursor: pointer
+    ;
+    color:white  ;
+    height: 20px;
+    border-radius: 20px;
+    width: 40px;
+    justify-self:end;
+    align-self: flex-end;
+}

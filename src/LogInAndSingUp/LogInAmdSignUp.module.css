@@ -1,0 +1,104 @@
+
+
+
+.Container{
+    display: flex;
+    justify-content: space-between;
+     gap: 10%;
+    flex-wrap:wrap;
+width: 100vw;
+
+
+}
+
+.SignUpContainer,.LogInContainer{
+    display: flex ;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width:45%;
+ 
+min-width: 400px;
+}
+
+.LogInContainer Form, .SignUpContainer Form{
+    display: flex;
+    flex-flow: column;
+width: 90%;
+margin: auto;
+padding: auto;
+}
+
+.SignUpContainer input[type="text"],.LogInContainer input[type="email"],.SignUpContainer input[type="email"],.LogInContainer input[type="text"],.SignUpContainer input[type="passWord"],.LogInContainer input[type="passWord"]
+{
+    width: 100%;
+    height: 40px;
+    border-color: transparent;
+    border-bottom:1px solid black;
+    padding: 10px 0;
+
+}
+
+.SignUpContainer input[type="submit"],.LogInContainer input[type="submit"]{
+    background-color: rgb(25, 52, 52);
+    width: 80px;
+    padding: 10px;
+    height: 40px;
+    text-align: center;
+    color: white;
+    border: 0px;
+    cursor: pointer;
+    margin: 10px 0;
+
+}
+
+.SignUpContainer input[type="submit"]:hover,.LogInContainer input[type="submit"]:hover{
+    background-color: rgb(76, 94, 94);
+    transition-duration:1s ;
+}
+
+.SignUpContainer input[type="submit"]:disabled,.LogInContainer input[type="submit"]:disabled{
+    background-color: rgb(25, 52, 52);
+    cursor: not-allowed; 
+  opacity: 0.6; 
+ 
+
+}
+
+.SignUpContainer input[type="submit"]:disabled:hover,.LogInContainer input[type="submit"]:disabled:hover{
+    transition-duration:1s ;
+    background-color: rgb(25, 52, 52);
+
+}
+.SignUpContainer p{
+
+font-size: 18px;
+text-align: left;
+margin-bottom: 5px;
+
+}
+
+
+
+.blocked {
+    pointer-events: none; /* Prevents all mouse events */
+    opacity: 0.5; /* Optional: Makes the page look disabled */
+  }
+  
+
+  @media(max-width:778px){
+
+    .Container{
+        
+        gap:30px;
+        align-items: center;
+        justify-content: center;
+    }
+    .LogInContainer ,.SignUpContainer{
+        width: 90%;
+    margin: auto
+    ;
+    }
+
+
+  }

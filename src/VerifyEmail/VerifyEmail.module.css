@@ -1,0 +1,15 @@
+
+
+.Container{
+    display: flex;
+    flex-flow: column;
+    gap: 40px;
+
+}
+.Container .Message{
+    color: green;
+    font-size: 18px;
+}
+.h2{
+    margin-top: 200px;
+}

@@ -1,0 +1,40 @@
+
+
+.Container{
+    display: flex;
+    flex-flow: column;
+    width: 200px;
+    height: fit-content;
+    gap: 10px;
+    padding: 10px;
+
+     box-shadow: 0px 0px 14px 4px;
+     min-width: 200px;
+     margin: 40px auto;
+font-family:serif}
+
+.img{
+    width: 100%;
+
+}
+.h3{
+    font-size: 15px;
+    margin: 0;
+    font-family: inherit;
+}
+.span{
+    font-size: 13px;
+    font-family: inherit;
+    align-self: flex-start;
+}
+.Container button{
+    background-color: rgb(10, 66, 85);
+    cursor: pointer
+    ;
+    color:white  ;
+    height: 20px;
+    border-radius: 20px;
+    width: 40px;
+    justify-self:end;
+    align-self: flex-end;
+}

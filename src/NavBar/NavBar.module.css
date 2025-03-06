@@ -1,0 +1,188 @@
+
+.Container{
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1px;
+  height: fit-content;
+  background-color: black;
+  color: white;
+  min-height: 50px;
+ z-index: 3;
+ position:fixed;
+ transition: 1s ease;
+ width: 90%;
+ margin:0  0 0 5% ;
+}
+
+.SubContainer{
+
+    display: flex;
+    margin: auto;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: transparent;
+    ;
+    gap: 20px;
+    flex-wrap: wrap;
+    
+  }
+
+  .SubContainer div a{
+    text-decoration: none;
+  background-color: transparent;
+  font-size: 16px;
+  padding: 14px 20px;
+transition-duration: 0.5s;
+text-align: left;
+align-items: flex-start;
+justify-content: flex-start;
+text-decoration: none;
+color: inherit;
+  
+  }
+  .SubContainer div a:hover{
+    
+    
+    background-color: darkslategray;
+    opacity: 70%;
+    color: black;    ;
+     
+     
+  }
+  .h2{
+
+    font-size: 36px;
+    justify-self:flex-start;
+padding: 0;
+margin: 0;
+align-self: flex-start;
+  }
+
+  .SubContainer div{
+
+    display: flex;
+    gap: 20px;
+    column-gap: 1px;
+    height: fit-content;
+    align-items: center;
+    text-align: center;
+    justify-content: flex-start;
+    flex: 1;
+    flex-wrap: wrap;
+    padding: 14px 0;
+
+  }
+
+
+  .CardAndUser{
+    display: flex;
+    gap: 10px;
+    font-size: 18px;
+    width: 20%;
+   justify-content: center;
+   align-items: center;
+
+  }
+
+  .CardAndUser *{
+    cursor: pointer;
+  }
+
+ .CardAndUser div span{
+  color: white;
+  background-color: red;
+  border-radius: 50px;
+  text-align: center;
+  padding: 2px;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  width: 15px;
+  height: fit-content;
+  }
+  
+    .CardAndUser  div{
+        position: relative;
+  
+      }
+
+ .Bars,.NavXmark{
+  display: none;
+}
+
+.AccountLink{
+
+  color: inherit;
+}
+
+.AccountLink:hover{
+
+  color: rgb(5, 112, 129);
+}
+
+
+
+  @media(max-width:778px){
+
+    .Container{
+      background-color: black;
+      justify-content: space-between;
+
+      justify-content: space-around;
+
+    }
+    .SubContainer div{
+      display: none;
+      background-color: white;
+      color: black;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      border: 6px solid white;
+      border-radius: 12px;
+     margin: 0;
+
+    }
+    .SubContainer div a{
+
+      width: 100%;
+    
+    }
+  
+    .Bars{
+      display: block;
+      font-size: 18px;
+ 
+    }
+
+    .NavXmark{
+      display: none;
+    }
+
+  }
+  @media(min-width:1000px){
+
+    .Container{
+      background-color: black;
+      
+    }
+    .SubContainer div{
+      display: flex;
+ 
+    }
+    .Bars{
+      display: none;
+      font-size: 18px;
+ 
+    }
+
+    .NavXmark{
+      display: none;
+    }
+
+  }
