@@ -1,0 +1,101 @@
+
+.AddProductJsx{
+    display: flex
+    ;
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+.Container{
+    color: black;
+    display: flex;
+
+flex-flow: column;
+
+align-items: center;
+justify-content: space-evenly;
+}
+
+
+.ContainerImg{
+    color: black;
+}
+
+
+.ContainerImg div{
+
+    width: 400px;
+    padding: 22px;
+    border: 1px solid black
+;}
+
+.ContainerImg div img{
+    width: 100%;
+}
+.ContainerImg button{
+
+    background-color: rgb(75, 128, 128);
+    padding: 10px;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+
+}
+
+
+
+.Container input{
+    color: black;
+    font-size: 21px;
+    margin: 15px;}
+
+.btnContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Catigories{
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.Catigories label {
+font-size: 22px;
+}
+.Catigories label{
+    padding: 20px;
+}
+
+.CatigoriesContainer{
+    height: 100%;
+    display: flex
+;
+    flex-flow: column;
+}
+.CatigoriesContainer h3{
+    font-size: 28px;
+}
+
+@media(max-width:687px){
+
+    .AddProductJsx{
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+    }
+   
+
+  }
+
+  .btnAdd{
+    background-color: rgb(75, 128, 128);
+
+    padding: 20px;
+    font-size: 19px;
+    margin: 50px 50px;
+    color: white;
+    cursor: pointer;
+}
+.btnAdd:disabled:hover{
+    cursor:not-allowed;
+}

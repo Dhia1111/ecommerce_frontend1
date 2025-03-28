@@ -17,7 +17,6 @@ function LogInAmdSignUp(){
      const ContainerRef=useRef(null);
      const LoaderData=useLoaderData();
     
-     console.log("Loader data from the JSX: "+LoaderData);
 
      if(LoaderData===true)
         {
@@ -28,6 +27,7 @@ function LogInAmdSignUp(){
 
    async function LogIn(e){
 
+    console.log("LogIn : "+process.env.REACT_APP_URL_LOGIN);
         e.preventDefault();
         if(ContainerRef.current){
 
@@ -36,51 +36,67 @@ function LogInAmdSignUp(){
             setLogInError("");
             const formData = new FormData(e.target); // Get form data
             const data = Object.fromEntries(formData.entries()); // Convert to an object
-            const responce= await fetch(process.env.REACT_APP_URL_LOGIN,{
+      
+            try{
+
+                
+               const responce= await fetch(process.env.REACT_APP_URL_LOGIN,{
                 method:"POST",
                 headers: { "Content-Type": "application/json" },
+                credentials:"include",
                 body:JSON.stringify(
-                    {      
-                           "userID": -1,
-                            "personID": -1,
-                            "userRole": 1,
-                            "userAtherization": 0,
-                            "userName":  data.UserName,
-                            "userPassword": data.PassWord,
-                            "createdAt": "string",
-                            "person": {
-                              "personID": -1,
-                              "firstName":"",
-                              "lastName": "string",
-                              "email": "test1233@gmial.com",
-                              "phone": "string",
-                              "country": "string",
-                              "postCode": "string",
-                              "city": "string"
-                            }
+                    {    
+                        "userID": 0,
+                        "personID": 0,
+                        "userRole": 1,
+                        "userAtherization": 0,
+                        "userName": data.UserName,
+                        "userPassword": data.PassWord,
+                        "createdAt": "string",
+                        "person": {
+                          "personID": 0,
+                          "firstName": "",
+                          "lastName": "string",
+                          "email": "user@example.com",
+                          "phone": "string",
+                          "country": "string",
+                          "postCode": "string",
+                          "city": "string"
+                        }
+                      
                           }
                     
                 ),
              
             })
- 
-            setLoggIng(false);
-            if(responce.ok){
 
-                setLogInMessage(responce.text());
+            setLoggIng(false);
+
+            if(responce.ok){
+              setLogInMessage(responce.text());
                 setLogInError("");
 
+               
             }
             else{
-
-                setLogInError(responce.text());
+   
+                const error=await responce.json();
+                setLogInError(error);
                 setLogInMessage("");
+            }
+            }
+
+            catch{
+                setLogInMessage("failed to log in due to fetching error ");
+
             }
 
              
     }
 
    }
+
+   
     const LogInContent=(
 
         <div className={Styles.LogInContainer}>
@@ -88,8 +104,8 @@ function LogInAmdSignUp(){
             {LogInError&&<p>{"Error : "+LogInError}</p>}
             <h2>Log In</h2>
             <Form onSubmit={LogIn} method="POST"> 
-             <input type="text" placeholder="Name" />
-            <input type="passWord" placeholder="Pass Word" security="*"/>
+             <input type="text" placeholder="Name" name="UserName" />
+            <input type="passWord" placeholder="Pass Word" name="PassWord" security="*"/>
             <input  type="submit" disabled={LoggingIn||signingUp} value="Log In"/>
          
     
@@ -258,15 +274,19 @@ export default LogInAmdSignUp;
  
 export async  function Loader(){
     //check if the  user is loged in then return  true =>redirect to log out 
+    console.log("process.env.REACT_APP_URL_ISLOGEDIN : "+process.env.REACT_APP_URL_ISLOGEDIN)
    const response =await fetch(process.env.REACT_APP_URL_ISLOGEDIN,{
         method:"GET",
         credentials:"include",
         headers: { "Content-Type": "application/json" } 
      
     })
-    .catch(error => console.error("Error fetching if the user is loged in:", error));
+    .catch(error => {console.error("Error fetching if the user is loged in:", error);
+        return null;
+    });
 
     const data=await response.json();
     return data;
+  
 
 }

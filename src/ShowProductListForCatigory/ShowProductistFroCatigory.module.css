@@ -1,0 +1,187 @@
+
+@keyframes AnimationConvergBefore {
+
+    0% {
+        right: 124%;
+        width: 15%;
+    }
+  
+  
+    10% {
+  
+  
+    }
+  
+   
+  
+  
+  
+    20% {
+        right: 50%;
+        width: 50%;
+        height: 100%;
+        border-radius: 0;
+    }
+  
+    60% {
+    
+  
+    }
+    70% {
+  
+  
+    }
+  
+    80% {
+  
+  
+    }
+  
+    99% {
+  
+      
+    }
+  
+    100% {
+        width: 50%;
+        height: 100%;
+        border-radius: 0;
+        right: 50%;
+        bottom: 0;
+    }
+  }
+  
+  
+  @keyframes AnimationConvergAfter {
+  
+  
+  
+    0% {
+        right: 124%;
+        width: 15%;
+    }
+  
+  
+    10% {
+    }
+  
+   
+  
+    20% {
+        left: 50%;
+        width: 50%;
+        height: 100%;
+        border-radius: 0;
+    }
+  
+    60% {
+    }
+  
+    70% {
+    }
+  
+    80% {
+   
+    }
+    
+    99%{
+  
+  
+  
+    }
+  
+  
+    100% {
+        width: 50%;
+        height: 100%;
+        border-radius: 0;
+        left:50%;
+        bottom: 0;
+    }
+  }
+  
+  
+  @keyframes AnimationFontGrading {
+  
+    0% {
+       color:black;
+       
+    }
+  
+    99%{
+        background:white;
+    }
+    100% {
+        color: white;
+        border: 2px solid white
+    }  
+  }
+  .HeadLine {
+    color: black;
+    background: white;
+    border: 3px solid black;
+    font-size: 28px;
+    margin: 40px auto 40px;
+    padding: 4px 15px;
+    position: relative;
+    text-align: center;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 45;
+    font-weight:700;
+  }
+  
+  .HeadLine::after {
+        content: '';
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background:rgb(73, 91, 73);
+        position: absolute;
+        left: 126%;
+        z-index: -1;
+    }
+  
+    .HeadLine::before {
+        content: '';
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background:rgb(73, 91, 73);
+        position: absolute;
+        right: 124%;
+        z-index: -1;
+    }
+  
+    .HeadLine:hover::after {
+        animation-name: AnimationConvergAfter;
+        animation-duration: 3s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+  
+    .HeadLine:hover::before {
+        animation-name: AnimationConvergBefore;
+        animation-duration: 3s;
+        animation-iteration-count: 1;
+        animation-fill-mode:forwards;
+    }
+  
+    .HeadLine:hover {
+  
+        animation:AnimationFontGrading 1s linear forwards ;
+     
+       
+    }
+
+    .List{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        gap: 10px;
+    
+      }
+    
+    

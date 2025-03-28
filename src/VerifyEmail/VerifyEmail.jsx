@@ -4,12 +4,12 @@ import NavBar from "../NavBar/NavBar"
 import { useLoaderData } from "react-router-dom"
 export default function VerifyEmail(){
 
-    var Message=useLoaderData();
+    const  Message=useLoaderData();
 
     return (
     <div className={Styles.Container}>
     <NavBar Color="black" BackGroundColor="white"/>
- <h2 className={Styles.h2}>Verify email</h2>
+    <h2 className={Styles.h2}>Verify email</h2>
     <p className={Styles.Message}>
 
  {"Message : "+Message}
@@ -28,20 +28,27 @@ export async  function Loader({request}){
 
    try{
     
- const Response=await    fetch(process.env.REACT_APP_URL_VerifyEmail,{
+   const Response=await    fetch(process.env.REACT_APP_URL_VerifyEmail,{
   method:"Post",
   credentials:"include",
    headers: { "Content-Type": "application/json" }
 ,body:JSON.stringify(
  GUID_ID
-),
+)
 })
 
-var result =await  Response.text();
 
- return result;
-   }catch{
-    return " Some Server Error Pleas try Later"
-   }
+
+   return await Response.text();
+
+
+
+}
+
+catch(e){
+
+   return "error"
+}
+
 
 }

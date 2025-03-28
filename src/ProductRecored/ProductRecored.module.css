@@ -23,9 +23,10 @@ align-items: center;
     font-family: inherit;
 }
 .span{
-    font-size: 14px;
+    font-size: 13px;
     font-family: inherit;
- }
+    align-self: flex-start;
+}
 .Container button{
     background-color: rgb(10, 66, 85);
     cursor: pointer

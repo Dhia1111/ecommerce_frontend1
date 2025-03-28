@@ -2,16 +2,23 @@ import Styles from "./Main.module.css";
 import { LayOuts } from "../Data/MainData";
 import NavBar from "../NavBar/NavBar";
 import { useEffect, useRef, useState } from "react";
-import SmallCard from "../SmallCard/SmallCard";
-import TestImage from "../Images/Test.jpg"
+import { GetProductsForCatigory } from "../APIs/Products.js";
+import SmallCard from "../SmallCard/SmallCard.jsx"
+
+
+import Cart from "../Cart/Cart.jsx"
+import { useLoaderData } from "react-router-dom";
 
 
 export default function Main() {
+
 const MainRef=useRef(null);
 const Prve1Ref=useRef(null);
 const Next1Ref=useRef(null);
 
 const [Active,setAcitve]=useState(0);
+const {NewProduct,PopulerProduct,BestSelling}=useLoaderData();
+
 useEffect(()=>{
   if(MainRef.current){
 
@@ -53,10 +60,13 @@ else{
   return (
     <>
     
-    <NavBar   className={Styles.Nav} Color="white" BackGroundColor="transparent" />
+    <NavBar  Postion="absolute" className={Styles.Nav} Color="white" BackGroundColor="transparent" />
+    
+    <Cart/>
 
-    <div className={Styles.Warper}>
-       <div  id="Main" ref={MainRef} className={Styles.Container}>
+  <div className={Styles.Warper}>
+
+ <div  id="Main" ref={MainRef} className={Styles.Container}>
 
     
 {LayOuts.map((layout, index) => (
@@ -113,27 +123,83 @@ return LayOuts.length-1;
   
   }> &gt;</button>
 </div>
+<h2 className={Styles.HeadLine}>New</h2>
+
+<div className={Styles.List}>
+
+{
+  NewProduct&&
+ 
+ NewProduct.map((product)=>(
+    
+  
+  <SmallCard key={product.id} id={product.id} price={product.price} Name={product.name} image={product.imageUrl} />
+   
+
+
+    
+    
+    ))
+}
+</div>
+ 
+<h2 className={Styles.HeadLine}>Populer</h2>
+
+<div className={Styles.List}>
+
+{
+  PopulerProduct&&
+ 
+  PopulerProduct.map((product)=>(
+    
+  
+  <SmallCard key={product.id} id={product.id} price={product.price} Name={product.name} image={product.imageUrl} />
+   
+
+
+    
+    
+    ))
+}
+
+
+</div>
+<h2 className={Styles.HeadLine}>Best Saling</h2>
+
+<div className={Styles.List}>
+
+{
+  BestSelling&&
+ 
+  BestSelling.map((product,index)=>(
+    
+  
+  <SmallCard key={index+1} id={product.id} price={product.price} Name={product.name} image={product.imageUrl} />
+   
+
+
+    
+    
+    ))
+}
+
+
+</div>
 </div>
 
+ 
 
-    <div className={Styles.Container2}>
-
-    <SmallCard image={TestImage} price="17" Name="Test SmallCard"/>      
-    <SmallCard image={TestImage} price="17" Name="Test SmallCard"/>      
-    <SmallCard image={TestImage} price="17" Name="Test SmallCard"/>      
-    <SmallCard image={TestImage} price="17" Name="Test SmallCard"/>      
-    <SmallCard image={TestImage} price="17" Name="Test SmallCard"/>      
-    <SmallCard image={TestImage} price="17" Name="Test SmallCard"/>      
-    <SmallCard image={TestImage} price="17" Name="Test SmallCard"/>      
-    
-
-    </div>
-    
     </>
   );
 }
 
 
 
-//Change Ototmaticly
 
+export async function Loader(){
+
+ const[NewProduct,PopulerProduct,BestSelling]=  await Promise.all([GetProductsForCatigory(3), GetProductsForCatigory(2),GetProductsForCatigory(1)]);
+   return  { NewProduct, PopulerProduct,BestSelling };
+    
+  }
+  

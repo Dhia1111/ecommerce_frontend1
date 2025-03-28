@@ -2,16 +2,16 @@
 
 import Styles from "./CartItem.module.css"
 import { useDispatch } from "react-redux"
-import {AddCount,ReduceCount,DeleteItem} from "../State/CartItems/CartItems.ts"
+import {IncriceNumberOfItems,DecrceNumberOfItems,DeleteItem} from "../State/CartItems/CartItems.ts"
 
 export default function CartItem({ ID,image,price,Name,NumberOfProduct}){
 const Dispatch=useDispatch();
-
- return(   <div className={Styles.Container}>
+ return(  
+      <div className={Styles.Container}>
          
          <button onClick={()=>{Dispatch(DeleteItem(ID)); }}>x</button>
 
-    <img src={image} alt={Name}/>
+    <img className={Styles.img} src={image} alt={Name}/>
     <h3 className={Styles.h3}>{Name}</h3>
     <span className={Styles.span}>Price {price}$</span>
     <span className={Styles.span}>Totole items {NumberOfProduct}</span>
@@ -20,9 +20,9 @@ const Dispatch=useDispatch();
 
  
     
-    <button onClick={()=>{  Dispatch(AddCount(ID));}}>+</button> 
+    <button onClick={()=>{  Dispatch(IncriceNumberOfItems(ID));}}>+</button> 
 
-     <button onClick={()=>{Dispatch(ReduceCount(ID)); }}>-</button>
+     <button onClick={()=>{Dispatch(DecrceNumberOfItems(ID)); }}>-</button>
 
 </div>)
 
