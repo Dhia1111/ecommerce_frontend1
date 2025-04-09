@@ -16,8 +16,7 @@ const LoaderData=useLoaderData();
             <span>{product.price+"$"}</span>
             <Link  to={`/Admine/ProductMangment/UpdateProduct?ProductID=${product.id}`}>Update</Link>
             <Link to={`/Admine/ProductMangment/DeleteProduct?ProductID=${product.id}`}>Delete</Link>
-            <Link to={`/Admine/ProductMangment/${product.id}`}>more</Link>
-        </div>)
+         </div>)
 
     })
     
