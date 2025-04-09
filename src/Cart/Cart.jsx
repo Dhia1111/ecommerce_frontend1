@@ -33,7 +33,7 @@ return (<>
 
       {CartItmes&&CartItmes.map((item,index) => (
 
-               <CartItem key={index+1} ID={item.ID} Name={item.Name} price={item.Price} NumberOfProduct={item.NumberOfItems} image={item.Image} />
+               <CartItem key={item.ProductID} ID={item.ProductID} Name={item.Name} price={item.Price} NumberOfProduct={item.NumberOfItems} image={item.Image} />
 
 
 ))}

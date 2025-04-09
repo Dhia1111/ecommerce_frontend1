@@ -20,7 +20,9 @@ import DeleteProduct from "./DeleteProduct/DeleteProduct.jsx"
 import {Loader as DeleteProductLoader} from "./DeleteProduct/DeleteProduct.jsx"
 import {Loader as ShowProductBasedOnCatigory} from "./ShowProductListForCatigory/ShowProductListForCatigory.jsx"
 import ShowCatiory from './ShowProductListForCatigory/ShowProductListForCatigory.jsx';
-import Payment from './Payment/Payment.jsx';
+import  Payment from "./Payment/Payment.jsx"
+import {Loader as PaymentLoader} from"./Payment/Payment.jsx"
+
 function App() {
   const MainRoute = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<Layout />}>
@@ -28,7 +30,7 @@ function App() {
       <Route path='about' element={<h3>About</h3>} />
        <Route path='ShwProductBasedOnCatigory' element={<ShowCatiory/>} loader={ShowProductBasedOnCatigory} />
       <Route path='accountant-access' element={<AccountLayOut />}>
-        <Route index element={<LogInAmdSignUp/>} loader={LoginLoader} /> 
+        <Route index element={<LogInAmdSignUp/>} loader={LoginLoader} errorElement={<h2>An error due to fetching </h2>}/> 
         <Route path='logout' element={<LogOut/>} />  
         <Route replace={true} path='VerifyEmail'  element={<VerifyEmail/>} loader={VerifyEmailLoader} />  
       
@@ -46,7 +48,7 @@ function App() {
       
       </Route>
 
-      <Route path='Cart' element={<Payment/>}/>  
+      <Route path='Cart' element={<Payment/>} loader={PaymentLoader}/>  
       </Route>
 
   ));

@@ -1,15 +1,15 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
  export class clsCartItem {
-    ID: number;
+    ProductID: number;
     Name: string;
     NumberOfItems: number;
     Price :number;
     Image:any;
 
-     constructor(id: number, name: string, Price: number, NumberOfItems:number, Image: any) {
+     constructor(productID: number, name: string, Price: number, NumberOfItems:number, Image: any) {
         
-        this.ID=id;
+        this.ProductID=productID;
         this.Name=name;
         this.Price=Price;
         this.Image=Image;
@@ -41,18 +41,21 @@ const CartItemsSlice=createSlice({
         reducers:{
 
             AddItem(state,action:PayloadAction<clsCartItem>){
+
                 state.value.push(action.payload);
-             } 
+             
+            } 
 ,         DeleteItem: (state , action:PayloadAction<number>)=>{
-                state.value=state.value.filter(e=>e.ID!==action.payload)
+                state.value=state.value.filter(e=>e.ProductID!==action.payload)
             },
 
             IncriceNumberOfItems: (state , action:PayloadAction<number>)=>{
 
-
                 state.value.forEach(e=>{
-                   
-                   if(e.ID===action.payload){
+                 
+
+                   if(e.ProductID===action.payload){
+
                     e.NumberOfItems++;
                     return;
                    } 
@@ -66,7 +69,7 @@ const CartItemsSlice=createSlice({
 
                 state.value.forEach(e=>{
                    
-                    if(e.ID===action.payload){
+                    if(e.ProductID===action.payload){
                    if(e.NumberOfItems>1) {
                     
                     e.NumberOfItems--;

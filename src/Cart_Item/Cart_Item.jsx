@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 import {IncriceNumberOfItems,DecrceNumberOfItems,DeleteItem} from "../State/CartItems/CartItems.ts"
 
 export default function CartItem({ ID,image,price,Name,NumberOfProduct}){
-const Dispatch=useDispatch();
+ const Dispatch=useDispatch();
  return(  
       <div className={Styles.Container}>
          

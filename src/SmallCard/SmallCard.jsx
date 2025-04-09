@@ -18,7 +18,7 @@ const [isProductInCart,setisProductInCart]=useState(false);
     useEffect(()=>{
         setisProductInCart(false);
         CartItmes.forEach(element => {
-            if(element.ID===id){
+            if(element.ProductID===id){
                 setisProductInCart(true);
                 return;
             }
@@ -38,10 +38,10 @@ const [isProductInCart,setisProductInCart]=useState(false);
         //you must inclued all cart items in the store
         //Create a function that indecate if the product is included (change the product state)
         // 
-        Dispatch(AddItem({ ID: id, Name: Name, Price: price, NumberOfItems: 1, Image:image}));
+        Dispatch(AddItem({ ProductID: id, Name: Name, Price: price, NumberOfItems: 1, Image:image}));
     }}>+</button>
 </div>)
 
-}
-
+} 
+ 
 

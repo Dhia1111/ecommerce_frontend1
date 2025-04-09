@@ -1,0 +1,32 @@
+
+.Container button:hover{
+    background-color: rgb(76, 94, 94);
+    transition-duration:1s ;
+}
+
+.Container button:disabled{
+    background-color: rgb(25, 52, 52);
+    cursor: not-allowed; 
+  opacity: 0.6; 
+ 
+
+}
+
+.Container button:disabled:hover{
+    transition-duration:1s ;
+    background-color: rgb(25, 52, 52);
+
+}
+
+.Container button{
+    background-color: rgb(25, 52, 52);
+    width: 160px;
+    padding: 10px;
+    height: 80px;
+    text-align: center;
+    color: white;
+    border: 0px;
+    cursor: pointer;
+    margin:50% auto;
+    border-radius: 10px;
+}

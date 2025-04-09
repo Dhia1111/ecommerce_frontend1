@@ -3,6 +3,7 @@
 export async function GetPersonInf() {
     try{
 
+        console.log("process.env.REACT_APP_URL_GetCustomerInf "+process.env.REACT_APP_URL_GetCustomerInf);
         const Responce=await fetch(process.env.REACT_APP_URL_GetCustomerInf,{
             method:"GET",
             credentials:"include",
@@ -22,23 +23,23 @@ export async function GetPersonInf() {
     
 }
 
-export async function LogOutAPI() {
+export async function LogOutAPI(ListOfProducts) {
 
+  
+
+    console.log("List of item from the LogOut Api handler : ");
+    console.log(ListOfProducts);
+    //Update the cart inf 
+    console.log("process.env.REACT_APP_URL_LogOut :"+process.env.REACT_APP_URL_LogOut);
     try{
 
-        const Responce=await fetch(process.env.REACT_APP_URL_LogOut,{
-            method:"GET",
+        await fetch(process.env.REACT_APP_URL_LogOut,{
+            method:"POST",
             credentials:"include",
-            headers: { "Content-Type": "application/json" }            
+            headers: { "Content-Type": "application/json" },         
+            body:JSON.stringify(ListOfProducts)   
         })
-        if(Responce.ok){
-
-            return true;
-   
-        }
-        else{
-            return false;
-        }
+       return true
 
    }
    catch{

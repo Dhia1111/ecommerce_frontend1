@@ -2,18 +2,20 @@ import { useState } from "react";
 import Styles from "./LogOut.module.css"
 import {LogOutAPI} from"../APIs/Customer.js"
 import { useNavigate } from "react-router-dom";
-
+ import { useSelector } from "react-redux";
 export default function LogOut(){
     const Navigate=useNavigate();
- const [isLogingOut,setLogInOut]=useState(false);
+    const ListOfItems=useSelector((state)=>state.CartItems.value);
+    const [isLogingOut,setLogInOut]=useState(false);
     return <div className={Styles.Container}>
-        
-        <button onClick={ async()=>{
-  
+    <button disabled={isLogingOut} onClick={ async()=>{
           setLogInOut(true);
-                   const result= await LogOutAPI();
-
+          console.log("List of item from the LogOut Jsx : ");
+          console.log(ListOfItems);
+          
+    const result= await LogOutAPI(ListOfItems);
               if(result){
+                  
               setLogInOut(false);
 
               Navigate("/", { replace: true });
@@ -28,3 +30,5 @@ export default function LogOut(){
         
         </div>
 }
+
+
