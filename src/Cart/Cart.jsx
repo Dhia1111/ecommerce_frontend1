@@ -24,14 +24,14 @@ return (<>
 
          <div className={Styles.SubContainer}> 
             <h3 className={Styles.h3}>Cart</h3> 
-            <Link to="/Cart"><FontAwesomeIcon icon={NextIcone}/>Buy</Link>
+            <Link to="/Cart" onClick={()=>{DispatchApp(SetTofalse())}}><FontAwesomeIcon icon={NextIcone}/>Buy</Link>
             <FontAwesomeIcon icon={arrowFrombracket} className={Styles.btn} onClick={()=>{DispatchApp(SetTofalse())}}/>
 
          </div>
          
       
 
-      {CartItmes&&CartItmes.map((item,index) => (
+      {CartItmes&&CartItmes.map((item) => (
 
                <CartItem key={item.ProductID} ID={item.ProductID} Name={item.Name} price={item.Price} NumberOfProduct={item.NumberOfItems} image={item.Image} />
 

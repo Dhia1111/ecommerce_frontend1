@@ -2,6 +2,7 @@ import Styles from "./ShowProductistFroCatigory.module.css"
 import { useLoaderData } from "react-router-dom";
 import { GetProductsForCatigory } from "../APIs/Products";
 import SmallCard from "../SmallCard/SmallCard";
+import NavBar from "../NavBar/NavBar";
 
 export default function ShowCatiory(){
 
@@ -10,6 +11,8 @@ const{Title,List}=useLoaderData();
 return(
 
 <>
+<NavBar Postion="relative" Color="black"/>
+
 {Title&&<h2 className={Styles.HeadLine}>{Title}</h2>}
 
 

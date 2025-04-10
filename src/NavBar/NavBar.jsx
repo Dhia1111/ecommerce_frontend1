@@ -18,7 +18,7 @@ function NavBar({Postion="fixed", Color="white", BackGroundColor="transparent"})
    <div id="NavBar" className={Styles.Container} style={{position:Postion, color:Color,  backgroundColor:BackGroundColor}} >
     
      <div className={Styles.SubContainer}>
-    <h2 className={Styles.h2}>#DEPhone</h2>
+    <Link to="/" className={Styles.h2}>#DEPhone</Link>
      <div id="LinkColection">
      <Link to ="/ShwProductBasedOnCatigory?CatigoryID=4" >Phone Cases</Link>
      <Link to ="/ShwProductBasedOnCatigory?CatigoryID=5" >Chargers</Link>

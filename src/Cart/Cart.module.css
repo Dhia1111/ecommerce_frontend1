@@ -21,6 +21,7 @@
             overflow: hidden;
             text-align: left;
             padding-bottom: 33px;
+            z-index: 50000;
 }
 .btn{
     color: white;

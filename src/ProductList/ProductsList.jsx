@@ -10,13 +10,15 @@ const LoaderData=useLoaderData();
 
  if(LoaderData) {
              const List= LoaderData.map((product)=>{
-             return(  <div key={product.id} className={Styles.ListContainer}>
+             return(
+            <div key={product.id} className={Styles.ListContainer}>
             <img  src={product.imageUrl} alt={product.name}/>
             <p>{product.name}</p>
             <span>{product.price+"$"}</span>
             <Link  to={`/Admine/ProductMangment/UpdateProduct?ProductID=${product.id}`}>Update</Link>
             <Link to={`/Admine/ProductMangment/DeleteProduct?ProductID=${product.id}`}>Delete</Link>
-         </div>)
+         </div>
+         )
 
     })
     

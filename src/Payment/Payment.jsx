@@ -313,7 +313,7 @@ if(Response.ok){
  
 
  
-           <input type="submit" disabled={!Strip||MyElements===null||Loading||CVCErrore||ExparationErrore||CardNumerErrore?true:false} value={Loading?"Loading...":"Donte"}/>
+           <input type="submit" disabled={!Strip||MyElements===null||Loading||CVCErrore||ExparationErrore||CardNumerErrore?true:false} value={Loading?"Loading...":"Buy"}/>
     </Form>
     
 

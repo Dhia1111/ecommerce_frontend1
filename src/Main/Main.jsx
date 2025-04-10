@@ -6,7 +6,6 @@ import { GetProductsForCatigory } from "../APIs/Products.js";
 import SmallCard from "../SmallCard/SmallCard.jsx"
 
 
-import Cart from "../Cart/Cart.jsx"
 import { useLoaderData } from "react-router-dom";
 
 
@@ -62,7 +61,6 @@ else{
     
     <NavBar  Postion="absolute" className={Styles.Nav} Color="white" BackGroundColor="transparent" />
     
-    <Cart/>
 
   <div className={Styles.Warper}>
 
