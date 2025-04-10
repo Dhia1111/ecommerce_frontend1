@@ -329,3 +329,14 @@ color: white;
    
      
   }
+
+  @media(max-width:778px){
+
+    .Container{
+      background-color: black;
+      height: 600px;
+      z-index: 222;
+    }
+
+  }
+  

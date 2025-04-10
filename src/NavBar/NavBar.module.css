@@ -14,7 +14,7 @@
  transition: 1s ease;
  width: 90%;
  margin:0  0 0 5% ;
- z-index: 33;
+ z-index: 2233;
 }
 
 .SubContainer{
@@ -97,7 +97,7 @@ font-weight: 700;
   }
 
  .CardAndUser div span{
-  color: white;
+  color: inherit;
   background-color: red;
   border-radius: 50px;
   text-align: center;
@@ -135,27 +135,28 @@ font-weight: 700;
   @media(max-width:778px){
 
     .Container{
-      background-color: black;
-      justify-content: space-between;
+       justify-content: space-between;
 
       justify-content: space-around;
+      gap:29px;
 
     }
+  
     .SubContainer div{
       display: none;
-      background-color: white;
-      color: black;
       text-align: center;
       justify-content: center;
       align-items: center;
-      border: 6px solid white;
+      border: 6px solid black;
+      background-color:inherit;
       border-radius: 12px;
      margin: 0;
-
+ 
     }
     .SubContainer div a{
 
       width: 100%;
+
     
     }
   
@@ -169,6 +170,10 @@ font-weight: 700;
       display: none;
     }
 
+  
+    .Container .AccountLink{
+      color: inherit;
+    }
   }
   @media(min-width:1000px){
 
@@ -189,5 +194,13 @@ font-weight: 700;
     .NavXmark{
       display: none;
     }
+
+  }
+
+  @media(max-width:350px){
+  .Container{
+ display: flex;
+ flex-flow: column;
+  }
 
   }

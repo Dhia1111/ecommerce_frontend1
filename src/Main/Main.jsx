@@ -70,14 +70,7 @@ else{
 {LayOuts.map((layout, index) => (
   <div key={index} id={`Section${index + 1}`} className={Styles.SubContainer }  >
     <img className={Styles.img} src={layout.image} alt="Main" />
-
-    <div>
-
-      <h2 className={Styles.h}>{layout.Title}</h2>
-      <p className={Styles.p}>{layout.Paragtaph}</p>
-      <button className={Styles.button}>{layout.ButtonText}</button>
-      
-    </div>
+ 
   </div>
 ))}
 

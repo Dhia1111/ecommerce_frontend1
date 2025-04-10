@@ -22,25 +22,28 @@ import {Loader as ShowProductBasedOnCatigory} from "./ShowProductListForCatigory
 import ShowCatiory from './ShowProductListForCatigory/ShowProductListForCatigory.jsx';
 import  Payment from "./Payment/Payment.jsx"
 import {Loader as PaymentLoader} from"./Payment/Payment.jsx"
+import {Loader as AdmineLoader} from"./AdmineLayout/AdmineLayout.jsx";
+import ErrorElement from './Error/ErrorElement.jsx';
+import { Loader as AddProductLoader } from "./AddProduct/AddProduct.jsx"
 
 function App() {
   const MainRoute = createBrowserRouter(createRoutesFromElements(
-    <Route path='/' element={<Layout />}>
+    <Route path='/' element={<Layout />} errorElement={<ErrorElement/>}>
       <Route index element={<Main />} loader={MainLoader}/> 
       <Route path='about' element={<h3>About</h3>} />
        <Route path='ShwProductBasedOnCatigory' element={<ShowCatiory/>} loader={ShowProductBasedOnCatigory} />
-      <Route path='accountant-access' element={<AccountLayOut />}>
-        <Route index element={<LogInAmdSignUp/>} loader={LoginLoader} errorElement={<h2>An error due to fetching </h2>}/> 
-        <Route path='logout' element={<LogOut/>} />  
+      <Route path='accountant-access' element={<AccountLayOut />} errorElement={<h2>An error due to fetching </h2>}>
+        <Route index element={<LogInAmdSignUp/>} loader={LoginLoader}  /> 
+        <Route   path='logout' element={<LogOut/>} />  
         <Route replace={true} path='VerifyEmail'  element={<VerifyEmail/>} loader={VerifyEmailLoader} />  
       
       </Route>
-      <Route path='Admine' element={<AdmineLayOut/>}>
+      <Route path='Admine' element={<AdmineLayOut/>} loader={AdmineLoader} errorElement={<h2>An error due to fetching </h2>}>
 
       <Route path='ProductMangment' element={<ProductMangment/>}>
       
       <Route index element={<ProductsList/>} loader={ProductListLoader}  /> 
-      <Route path='AddProduct' element={<AddProduct/>}/>
+      <Route path='AddProduct' element={<AddProduct/>} loader={AddProductLoader}/>
       <Route path='UpdateProduct' element={<UpdateProduct/>} loader={UpdateProductLoader}/>
       <Route path='DeleteProduct' element={<DeleteProduct/>} loader={DeleteProductLoader}/>
 

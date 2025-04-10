@@ -170,6 +170,37 @@ export async function GetProduct(ProductID) {
     
 }
 
+export async function IsAthorized() {
+
+ try{
+  const response =await fetch(process.env.REACT_APP_URL_ISATHORIZED,{
+    method:"GET",
+    credentials:"include",
+    headers: { "Content-Type": "application/json" } 
+ 
+})
+
+if(response.ok )
+{ 
+    
+
+  
+  return response.json()
+
+     
+
+}
+else return false;
+
+ }
+ catch{
+  return false;
+
+ }
+
+}
+
+
 export async function GetProductsForCatigory( stCatigoryID){
 
   const CatigoryID=Number(stCatigoryID)

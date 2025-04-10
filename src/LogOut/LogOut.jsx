@@ -9,7 +9,7 @@ export default function LogOut(){
     const ListOfItems=useSelector((state)=>state.CartItems.value);
     const [isLogingOut,setLogInOut]=useState(false);
     return <div className={Styles.Container}>
-      <NavBar Color="black"/>
+      <NavBar  BackGroundColor="white" Postion="relative" Color="black"/>
     <button disabled={isLogingOut} onClick={ async()=>{
           setLogInOut(true);
           console.log("List of item from the LogOut Jsx : ");

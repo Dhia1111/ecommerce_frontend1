@@ -87,7 +87,7 @@ function LogInAmdSignUp(){
             }
 
             catch{
-                setLogInMessage("failed to log in due to fetching error ");
+                setLogInMessage("failed to log in please check the UserName and the  PassWord ");
 
             }
 

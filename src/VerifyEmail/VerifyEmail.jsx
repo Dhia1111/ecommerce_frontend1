@@ -8,7 +8,7 @@ export default function VerifyEmail(){
 
     return (
     <div className={Styles.Container}>
-    <NavBar Color="black" BackGroundColor="white"/>
+    <NavBar Postion="relative" Color="black" BackGroundColor="white"/>
     <h2 className={Styles.h2}>Verify email</h2>
     <p className={Styles.Message}>
 

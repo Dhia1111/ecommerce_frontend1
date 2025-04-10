@@ -17,8 +17,7 @@ width: 100vw;
     justify-content: center;
     align-items: center;
     width:45%;
- 
-min-width: 400px;
+    min-width: 270px;
 }
 
 .LogInContainer Form, .SignUpContainer Form{
@@ -85,6 +84,14 @@ margin-bottom: 5px;
     opacity: 0.5; /* Optional: Makes the page look disabled */
   }
   
+  @media (max-width: 350px) {
+    .LogInContainer ,.SignUpContainer{
+        gap: 30px;
+        align-items: center;
+        justify-content: center;
+        
+    }
+}
 
   @media(max-width:778px){
 
@@ -102,3 +109,5 @@ margin-bottom: 5px;
 
 
   }
+
+ 

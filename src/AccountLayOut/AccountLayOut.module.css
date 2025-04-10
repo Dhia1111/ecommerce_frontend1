@@ -1,0 +1,18 @@
+
+.link{
+    background: black;
+    
+    padding: 10px;
+ 
+    font-size: 23px;
+    text-decoration: none;
+    color: white;
+}
+
+.Container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 100px;
+flex-flow: column;
+}
