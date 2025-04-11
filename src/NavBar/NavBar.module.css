@@ -111,7 +111,7 @@ font-weight: 700;
   height: fit-content;
   }
   
-    .CardAndUser  div{
+  .CardAndUser  div{
         position: relative;
   
       }
@@ -165,7 +165,10 @@ font-weight: 700;
       font-size: 18px;
  
     }
+    .Bars:hover{
 
+      color: rgb(5, 112, 129);
+    }
     .NavXmark{
       display: none;
     }
@@ -173,6 +176,10 @@ font-weight: 700;
   
     .Container .AccountLink{
       color: inherit;
+    }
+    .AccountLink:hover{
+
+      color: rgb(5, 112, 129);
     }
   }
   @media(min-width:1000px){
@@ -202,5 +209,15 @@ font-weight: 700;
  display: flex;
  flex-flow: column;
   }
+  .Container .AccountLink{
+    color: inherit;
+  }
+  .AccountLink:hover{
 
+    color: rgb(5, 112, 129);
+  }
+  .Bars:hover{
+
+    color: rgb(5, 112, 129);
+  }
   }
