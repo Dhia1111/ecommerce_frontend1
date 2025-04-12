@@ -42,14 +42,11 @@ export default function AddProduct(){
         }
       };
     
-      console.log("CAtigories : "+CatigoriesArry);
-  function HandleCatigories(e){
+   function HandleCatigories(e){
     const value = e.target.value;
-    console.log("value : "+value);
-
+ 
     const isChecked = e.target.checked;
-    console.log("isChecked : "+isChecked);
-
+ 
     if (isChecked) {
         CatigoriesArry.push(value); // Mutate the array
         console.log("CAtigories : "+CatigoriesArry);
@@ -148,8 +145,8 @@ else{
            <button onClick={handleClearImage}>delete</button></div>
        </div>
        
-       <input type="text" onChange={(e)=>{ProductName=e.target.value;console.log("ProductName : "+ProductName)}} placeholder="Product Name"/>
-       <input type="number"  onChange={(e)=>{ProductPrice=e.target.value;console.log(" product Price : "+ProductPrice)}}  placeholder="Price($)"/>
+       <input type="text" onChange={(e)=>{ProductName=e.target.value;}} placeholder="Product Name"/>
+       <input type="number"  onChange={(e)=>{ProductPrice=e.target.value;}}  placeholder="Price($)"/>
        
        </div >
        <div className={Styles.CatigoriesContainer}>

@@ -82,6 +82,11 @@ const CartItemsSlice=createSlice({
                   })
             },
 
+
+            DeleteAll: (state)=>{
+                state.value=[]
+            },
+
           
     
     
@@ -93,6 +98,6 @@ const CartItemsSlice=createSlice({
 
 export default CartItemsSlice.reducer;
 
-export const {AddItem,DeleteItem,IncriceNumberOfItems,DecrceNumberOfItems} =CartItemsSlice.actions;
+export const {AddItem,DeleteItem,IncriceNumberOfItems,DecrceNumberOfItems,DeleteAll} =CartItemsSlice.actions;
 
 

@@ -273,9 +273,7 @@ export default LogInAmdSignUp;
 
  
 export async  function Loader(){
-    //check if the  user is loged in then return  true =>redirect to log out 
-    console.log("process.env.REACT_APP_URL_ISLOGEDIN : "+process.env.REACT_APP_URL_ISLOGEDIN)
-   const response =await fetch(process.env.REACT_APP_URL_ISLOGEDIN,{
+     const response =await fetch(process.env.REACT_APP_URL_ISLOGEDIN,{
         method:"GET",
         credentials:"include",
         headers: { "Content-Type": "application/json" } 

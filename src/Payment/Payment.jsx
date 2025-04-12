@@ -3,15 +3,42 @@ import { useLoaderData } from "react-router-dom"
 import {GetPersonInf} from "../APIs/Customer.js"
 import { CardNumberElement,CardCvcElement,CardExpiryElement,Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useStripe ,useElements} from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import { Form } from "react-router-dom";
+import { DeleteAll } from "../State/CartItems/CartItems.ts";
 
 
 
 import CartItem from "../Cart_Item/Cart_Item.jsx";
-
+const countries = [
+  "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argentina", "Armenia", "Australia",
+  "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium",
+  "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei",
+  "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Chad",
+  "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus",
+  "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt",
+  "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji",
+  "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada",
+  "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland",
+  "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan",
+  "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho",
+  "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia",
+  "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia",
+  "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia",
+  "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea",
+  "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea",
+  "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda",
+  "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino",
+  "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone",
+  "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea",
+  "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria",
+  "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago",
+  "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates",
+  "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela",
+  "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+];
 const stripePromise = loadStripe("pk_test_51Qo4yb00xA9CLJuHawbJeJaL6MvI9ZisSHNMdiMk2BoUTk0kKjv3XDtlY0jo4rC2TBmpRcvv8AMk0N08W7sAelDy00C0EfFdwZ");
   
 const cardImages = {
@@ -40,6 +67,7 @@ const cardImages = {
   const [CVCErrore,setCVCErrore]=useState(true);
   const CartItmesList=useSelector((state)=>state.CartItems.value);
   const PersonInf=useLoaderData();
+  const Dispatch=useDispatch();
 
    const [PersonData, setPersonInf] = useState({
     firstName: "",
@@ -70,6 +98,7 @@ const cardImages = {
   const handleChange = (e) => {
   
     const { name, value } = e.target;
+ 
     setPersonInf(prev => ({
       ...prev,
       [name]: value
@@ -114,8 +143,7 @@ else{
 }
 //create a Guid  to send to the payment  to make sure the user does not pay toise and store it into ;
  
-console.log(PersonData)
-console.log("calling API");
+ console.log("calling API");
 
 
 const url=process.env.REACT_APP_URL_PAYMENT;
@@ -159,19 +187,20 @@ if(Response.ok){
     setLoading(false);
     const FetchingData=await Response.json();
     setMessage("Payment added secsessfuly "+FetchingData.message)
-
+    Dispatch(DeleteAll());
+   
 
 }else{
 
   const FetchingData=await Response.json();
     setLoading(false);
+    
     setMessage("Payment field "+FetchingData.message)
 
 
 }
 
-//delete the old GUID and create a new one .
-
+ 
     }
 
     
@@ -238,13 +267,21 @@ if(Response.ok){
         onChange={handleChange}
         placeholder="Phone"
       />
-      <input
-        type="text"
-        name="country"
+ 
+      
+      <div>
+       <select
+               name="country"
         defaultValue={PersonInf.country}
-        onChange={handleChange}
-        placeholder="Country"
-      />
+        onChange={(e) => handleChange(e)}
+      >
+         {countries.map((country, idx) => (
+          <option key={idx} value={country}>{country}</option>
+        ))}
+      </select>
+
+    </div>
+
       <input
         type="text"
         name="city"
@@ -314,6 +351,7 @@ if(Response.ok){
 
  
            <input type="submit" disabled={!Strip||MyElements===null||Loading||CVCErrore||ExparationErrore||CardNumerErrore?true:false} value={Loading?"Loading...":"Buy"}/>
+
     </Form>
     
 

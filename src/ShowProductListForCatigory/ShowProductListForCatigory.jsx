@@ -51,8 +51,7 @@ export async function Loader({request}){
         
         const List=await GetProductsForCatigory(CatigoryID);
         const Title=Titles[Number(CatigoryID)-1];
-        console.log("title :"+Title)
-     return   {List,Title}
+      return   {List,Title}
     
     
     }

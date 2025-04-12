@@ -69,15 +69,12 @@ else{
     
 {LayOuts.map((layout, index) => (
   <div key={index} id={`Section${index + 1}`} className={Styles.SubContainer }  >
-    <img className={Styles.img} src={layout.image} alt="Main" />
+    <img loading="lazy" className={Styles.img} src={layout.image} alt="Main" />
  
   </div>
 ))}
 
 <button  id="Prev" ref={Prve1Ref} className={Styles.Prev} onClick={()=>{
-
-
- 
     setAcitve((Active)=>{
 
       if(Active===0)

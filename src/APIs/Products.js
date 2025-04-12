@@ -205,7 +205,6 @@ export async function GetProductsForCatigory( stCatigoryID){
 
   const CatigoryID=Number(stCatigoryID)
   if(!CatigoryID){
-    console.log("Invalaid Catigory");
     return;
   }
 

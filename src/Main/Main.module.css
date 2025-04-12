@@ -178,10 +178,9 @@
  
   }
   
-  .img {
+ .SubContainer .img {
     width: 100%;
-    height: fit-content;
-    position: relative;
+     position: relative;
   }
   
   .p {

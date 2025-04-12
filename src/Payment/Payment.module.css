@@ -2,6 +2,7 @@
 .Coontainer{
     display: flex;
 }
+
 .SubContainer{
     display: flex;
     flex-wrap: wrap;
@@ -20,10 +21,12 @@ min-width: 450px;
 padding-left: 10px;
 }
 
-.PersonInf input{
-    font-size: 25px;
+.PersonInf input, select{
+    font-size: 28px;
     height: 40px;
     border-radius: 10px;
+    width: 75%;
+    margin: auto;
 }
 
     .CartInf .input {
@@ -36,6 +39,7 @@ padding-left: 10px;
         align-content: center;
         padding: 6px;
     }
+
     .CartInf .input span{
         font-size: 24px;
     }
@@ -48,6 +52,7 @@ padding-left: 10px;
         justify-content: center;
         align-items: center;
     }
+
     .imgCardNumberBox .img{
 
         width:  50px;
@@ -59,10 +64,7 @@ padding-left: 10px;
     transform: translateX(-100%);
     }
     
-    
-    
-
-.PersonInf h3,.CartInf h3{
+   .PersonInf h3,.CartInf h3{
     align-self: flex-start;
     width: 100%;
     font-size: 23px;
@@ -70,9 +72,7 @@ padding-left: 10px;
     padding-left: 10px;
 }
 
-
-
- input[type="submit"]{
+      input[type="submit"]{
     background-color: rgb(25, 52, 52);
     width: 70%;
     padding: 10px;

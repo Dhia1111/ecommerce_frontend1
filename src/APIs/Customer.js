@@ -3,8 +3,7 @@
 export async function GetPersonInf() {
     try{
 
-        console.log("process.env.REACT_APP_URL_GetCustomerInf "+process.env.REACT_APP_URL_GetCustomerInf);
-        const Responce=await fetch(process.env.REACT_APP_URL_GetCustomerInf,{
+         const Responce=await fetch(process.env.REACT_APP_URL_GetCustomerInf,{
             method:"GET",
             credentials:"include",
             headers: { "Content-Type": "application/json" }            
