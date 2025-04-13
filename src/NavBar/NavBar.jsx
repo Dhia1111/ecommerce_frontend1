@@ -10,10 +10,27 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import {SetToTrue} from "../State/Cart/CartState.ts"
+import { useEffect } from "react"
 
 function NavBar({Postion="fixed", Color="white", BackGroundColor="transparent"}){
+
   const DispatchApp=useDispatch();
    const NumberOfItems=useSelector((state)=>state.CartItems.value.length);
+
+   useEffect((()=>{
+
+    var LinkColection=document.getElementById("LinkColection");
+    var Xmark=document.getElementById("NavXmark");
+    var Bars=document.getElementById("NavBars");
+    
+   if(LinkColection&&Xmark&&Bars){
+    LinkColection.style.display="none";
+    Xmark.style.display="none";
+    Bars.style.display="block";
+   }
+    
+
+   }),[])
    return( 
    <div id="NavBar" className={Styles.Container} style={{position:Postion, color:Color,  backgroundColor:BackGroundColor}} >
     
