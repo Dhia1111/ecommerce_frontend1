@@ -23,12 +23,18 @@ function NavBar({Postion="fixed", Color="white", BackGroundColor="transparent"})
     var Xmark=document.getElementById("NavXmark");
     var Bars=document.getElementById("NavBars");
     
-   if(LinkColection&&Xmark&&Bars){
+   if(LinkColection&&Xmark&&Bars&&(window.innerWidth<778)){
     LinkColection.style.display="none";
     Xmark.style.display="none";
     Bars.style.display="block";
    }
-    
+    else{
+      if(LinkColection&&Xmark&&Bars&&(window.innerWidth<778)){
+        LinkColection.style.display="none";
+        Xmark.style.display="none";
+        Bars.style.display="none";
+       }
+    }
 
    }),[])
    return( 
