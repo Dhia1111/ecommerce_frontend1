@@ -12,9 +12,7 @@ export default function LogOut(){
       <NavBar  BackGroundColor="white" Postion="relative" Color="black"/>
     <button disabled={isLogingOut} onClick={ async()=>{
           setLogInOut(true);
-          console.log("List of item from the LogOut Jsx : ");
-          console.log(ListOfItems);
-          
+           
     const result= await LogOutAPI(ListOfItems);
               if(result){
                   

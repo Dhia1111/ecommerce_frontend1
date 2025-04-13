@@ -26,7 +26,10 @@ function NavBar({Postion="fixed", Color="white", BackGroundColor="transparent"})
      <Link to ="/ShwProductBasedOnCatigory?CatigoryID=7" >Screen Protectors</Link>      
     <Link to ="/ShwProductBasedOnCatigory?CatigoryID=8" >Luxury Leather</Link>
     <Link to ="/ShwProductBasedOnCatigory?CatigoryID=9" >Tech Accessories</Link>
-    <Link to ="/ShwProductBasedOnCatigory?CatigoryID=10" >Everyday Essentials</Link></div>
+    <Link to ="/ShwProductBasedOnCatigory?CatigoryID=10" >Everyday Essentials</Link>
+    
+    
+    </div>
     </div>
 
   <div  className={Styles.CardAndUser}>
@@ -77,22 +80,6 @@ Bars.style.display="block";
 }
 
 export default NavBar
-
-/*window.addEventListener("scroll", function (event) {
-
-  var NavBar=this.document.getElementById("NavBar");
-  if(!NavBar)return;
-  if (window.scrollY > 300) {
-      NavBar.style.backgroundColor="black";
-   }
-  else{
-    NavBar.style.backgroundColor="transparent";
-
-  }
-});
-
- */
-
 
 window.addEventListener("resize", (event) => {
   if( window.innerWidth<778){

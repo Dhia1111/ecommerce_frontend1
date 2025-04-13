@@ -12,8 +12,6 @@ import { useLoaderData } from "react-router-dom";
 export default function Main() {
 
 const MainRef=useRef(null);
-const Prve1Ref=useRef(null);
-const Next1Ref=useRef(null);
 
 const [Active,setAcitve]=useState(0);
 const {NewProduct,PopulerProduct,BestSelling}=useLoaderData();
@@ -27,8 +25,6 @@ useEffect(()=>{
     if(items[Active]){ 
 
     MainRef.current.style.left=-items[Active].offsetLeft+"px";
-    Prve1Ref.current.style.left=items[Active].offsetLeft+"px";
-    Next1Ref.current.style.left= (items[Active].offsetLeft+items[Active].offsetWidth)+"px";
  
 
     }
@@ -47,7 +43,7 @@ else{
     
     ;
  
-  }, 4000);
+  }, 2000);
 
   // Cleanup interval on unmount or Active change
   return () => clearInterval(interval);
@@ -74,42 +70,7 @@ else{
   </div>
 ))}
 
-<button  id="Prev" ref={Prve1Ref} className={Styles.Prev} onClick={()=>{
-    setAcitve((Active)=>{
 
-      if(Active===0)
-return LayOuts.length-1;
-      else{
-        return Active-1;
-      }
-    });
-  
-  
-  }
-
-} >&lt;</button>
-<button id="Next" ref={Next1Ref} className={Styles.Next} onClick={()=>{ 
-  
- 
-  
-   setAcitve((Active)=>{
-
-    if(Active===LayOuts.length-1){
-
-      return 0;
-
-    }
-    else{
-      return Active+1;
-    }
-
-
-
-   });
-}
-  
-  
-  }> &gt;</button>
 </div>
 <h2 className={Styles.HeadLine}>New</h2>
 
