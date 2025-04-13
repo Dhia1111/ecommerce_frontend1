@@ -22,12 +22,10 @@ export async function GetPersonInf() {
     
 }
 
-export async function LogOutAPI(ListOfProducts) {
+export async function LogOutAPI() {
 
   
 
-    console.log("List of item from the LogOut Api handler : ");
-    console.log(ListOfProducts);
     //Update the cart inf 
     console.log("process.env.REACT_APP_URL_LogOut :"+process.env.REACT_APP_URL_LogOut);
     try{
@@ -36,7 +34,6 @@ export async function LogOutAPI(ListOfProducts) {
             method:"POST",
             credentials:"include",
             headers: { "Content-Type": "application/json" },         
-            body:JSON.stringify(ListOfProducts)   
         })
        return true
 
