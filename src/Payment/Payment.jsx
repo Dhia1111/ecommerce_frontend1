@@ -39,7 +39,7 @@ const countries = [
   "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela",
   "Vietnam", "Yemen", "Zambia", "Zimbabwe"
 ];
-const stripePromise = loadStripe("pk_test_51Qo4yb00xA9CLJuHawbJeJaL6MvI9ZisSHNMdiMk2BoUTk0kKjv3XDtlY0jo4rC2TBmpRcvv8AMk0N08W7sAelDy00C0EfFdwZ");
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
   
 const cardImages = {
   visa: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg",

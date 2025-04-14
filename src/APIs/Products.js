@@ -214,7 +214,7 @@ export async function GetProductsForCatigory( stCatigoryID){
   }
 try{
   
-  const response =await fetch("https://localhost:7072/api/Ecommerce/ProductMangment/GetAllProductsForCatigory/"+CatigoryID,{
+  const response =await fetch(process.env.REACT_APP_URL_GETALLPRODUCTSFROCATIGORY+CatigoryID,{
     method:"GET",
     credentials:"include",
     headers: { "Content-Type": "application/json" } 
