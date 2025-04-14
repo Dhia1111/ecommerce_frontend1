@@ -52,16 +52,16 @@ function LogInAmdSignUp(){
                         "userAtherization": 0,
                         "userName": data.UserName,
                         "userPassword": data.PassWord,
-                        "createdAt": "string",
+                        "createdAt": "",
                         "person": {
                           "personID": 0,
                           "firstName": "",
-                          "lastName": "string",
+                          "lastName": "",
                           "email": "user@example.com",
-                          "phone": "string",
-                          "country": "string",
-                          "postCode": "string",
-                          "city": "string"
+                          "phone": "",
+                          "country": "",
+                          "postCode": "",
+                          "city": ""
                         }
                       
                           }
@@ -143,12 +143,12 @@ async  function  SignUp(e){
                             "person": {
                               "personID": -1,
                               "firstName":"",
-                              "lastName": "string",
+                              "lastName": "",
                               "email": data.Email,
-                              "phone": "string",
-                              "country": "string",
-                              "postCode": "string",
-                              "city": "string"
+                              "phone": "",
+                              "country": "",
+                              "postCode": "",
+                              "city": ""
                             }
                           }
                     
