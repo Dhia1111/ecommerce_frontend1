@@ -146,7 +146,7 @@ else{
 
 
 export async function Loader(){
-
+ 
  const[NewProduct,PopulerProduct,BestSelling]=  await Promise.all([GetProductsForCatigory(3), GetProductsForCatigory(2),GetProductsForCatigory(1)]);
    return  { NewProduct, PopulerProduct,BestSelling };
     

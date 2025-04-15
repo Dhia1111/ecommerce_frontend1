@@ -80,7 +80,7 @@ const cardImages = {
   });
 
   useEffect(()=>{
-
+ 
     if(PersonInf!=null){
       setPersonInf({
         firstName:PersonInf.firstName,
@@ -91,6 +91,13 @@ const cardImages = {
         postCode: PersonInf.postCode
         ,email:PersonInf.email
       })
+
+    }
+    if(PersonInf.country===""){
+      setPersonInf(prev => ({
+        ...prev,
+        country: countries[0],
+      }));
     }
   },[PersonInf])
   
@@ -263,7 +270,7 @@ if(Response.ok){
       <input
         type="text"
         name="phone"
-        defaultValue={PersonInf.phone}
+        defaultValue={PersonInf.phone.length!==0?PersonInf.phone:""}
         onChange={handleChange}
         placeholder="Phone"
       />

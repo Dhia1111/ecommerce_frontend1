@@ -94,10 +94,14 @@ if(!ProductName){
 
 if(ProductName.length===0){
    setError("you must set the product Name");
-   return;
-
-
 }
+   if(CatigoriesArry.length===0){
+      setError("you must at les choose one Category ")
+   return;
+}
+
+
+
 
 
  
@@ -111,7 +115,7 @@ setLaoding(false);
 if(result){
 
 
-   setResponceMessage("Product Added secsessfuly");
+   setResponceMessage("Product Updated secsessfuly");
    console.log("LoaderData.imageUrl "+LoaderData.imageUrl)
    console.log("ImageUrl "+ImageUrl)
 

@@ -145,7 +145,7 @@ async  function  SignUp(e){
                               "firstName":"",
                               "lastName": "",
                               "email": data.Email,
-                              "phone": "",
+                              "phone":"",
                               "country": "",
                               "postCode": "",
                               "city": ""
