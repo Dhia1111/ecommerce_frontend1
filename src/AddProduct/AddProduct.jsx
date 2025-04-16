@@ -1,6 +1,6 @@
 
 
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Styles from "./AddProduct.module.css"
 import {AddProduct as AddNewProduct} from "../APIs/Products.js"
 import { useLoaderData } from "react-router-dom";
@@ -15,10 +15,15 @@ export default function AddProduct(){
     const [responceMessage,setResponceMessage]=useState();
     const [Loading,setLaoding]=useState(false)
     const IsUserAthorized=useLoaderData();
- 
+     
     const FileRef=useRef();
 
+useEffect(()=>{
 
+   CatigoriesArry=[]
+
+
+},[])
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -49,14 +54,13 @@ export default function AddProduct(){
  
     if (isChecked) {
         CatigoriesArry.push(value); // Mutate the array
-        console.log("CAtigories : "+CatigoriesArry);
-      } 
+       } 
     else {
         CatigoriesArry = CatigoriesArry.filter((k) => k !== value); 
     }
   }
 
- async function HandleAdd(e){
+     async function HandleAdd(e){
 //validation
 setResponceMessage("");
 if(ProductPrice<=0){
@@ -96,6 +100,7 @@ const result= await AddNewProduct(ProductName,ProductPrice,CatigoriesArry,Select
 setLaoding(false);
 if(result){
 
+   CatigoriesArry=[];
    setResponceMessage("Product Added secsessfuly");
 
    
