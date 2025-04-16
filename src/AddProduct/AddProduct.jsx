@@ -100,7 +100,6 @@ const result= await AddNewProduct(ProductName,ProductPrice,CatigoriesArry,Select
 setLaoding(false);
 if(result){
 
-   CatigoriesArry=[];
    setResponceMessage("Product Added secsessfuly");
 
    

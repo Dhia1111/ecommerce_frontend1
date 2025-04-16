@@ -1,7 +1,7 @@
  import { useLoaderData, useRevalidator } from "react-router-dom";
 import {UpdateProduct as UpdateProductAPI ,GetProduct,IsAthorized} from "../APIs/Products.js"
 import Styles from "./UpdateProduct.module.css"
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 
 
@@ -26,6 +26,11 @@ const [responceMessage,setResponceMessage]=useState();
 const [Loading,setLaoding]=useState(false)
 const FileRef =useRef();
 const {revalidate}=useRevalidator();
+
+useEffect(()=>{
+CatigoriesArry=[]
+
+},[]);
 
 if(LoaderData){     
    CatigoriesArry=[];
