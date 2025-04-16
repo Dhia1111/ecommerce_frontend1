@@ -17,11 +17,12 @@
             transition: 1s;
             z-index: 12;
             top: 173px;
-            height: 449px;
+            height: fit-content;
             overflow: hidden;
             text-align: left;
             padding-bottom: 33px;
             z-index: 50000;
+            max-height: 1000px;
 }
 .btn{
     color: white;

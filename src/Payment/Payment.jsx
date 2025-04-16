@@ -91,14 +91,14 @@ const cardImages = {
         postCode: PersonInf.postCode
         ,email:PersonInf.email
       })
+      if(PersonInf.country===""){
+        setPersonInf(prev => ({
+          ...prev,
+          country: countries[0],
+        }));
+      }
+    }
 
-    }
-    if(PersonInf.country===""){
-      setPersonInf(prev => ({
-        ...prev,
-        country: countries[0],
-      }));
-    }
   },[PersonInf])
   
 

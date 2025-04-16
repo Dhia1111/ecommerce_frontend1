@@ -157,7 +157,7 @@ else{
               <button  className={Styles.btn} onClick={handleClearImage}>delete</button></div>
 
                 <input type="text"  defaultValue ={LoaderData.name} onChange={(e)=>{ProductName=e.target.value}} placeholder="Name"/>
-                <input type="number" defaultValue={ProductPrice} onChange={(e)=>{ProductPrice=Number(e.target.value);console.log("Prduct on change : "+ProductPrice)}} name="Price" placeholder="Price"   />
+                <input type="number" defaultValue={ProductPrice} onChange={(e)=>{ProductPrice=Number(e.target.value);}} name="Price" placeholder="Price"   />
                 <input    type="file"    accept="image/*"    onChange={(e)=>handleImageChange(e)}    ref={FileRef}   style={{ display: 'none' }}    />
              
                 
