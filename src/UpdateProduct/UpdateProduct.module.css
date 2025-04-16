@@ -67,3 +67,17 @@
     .btnContainer{
         display: flex;
     }
+
+
+    @media(max-width:778px){
+        .MainContainer{
+
+            display: flex;
+            flex-flow: column;
+            width: 90%;
+            gap: 10px;
+        }
+        .Container{
+            gap: 10px;
+        }
+    }
