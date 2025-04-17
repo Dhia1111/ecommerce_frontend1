@@ -20,8 +20,9 @@ export default function AddProduct(){
 
 useEffect(()=>{
 
-   CatigoriesArry=[]
-
+   CatigoriesArry=[];
+ProductPrice=0;
+ProductName="";
 
 },[])
     const handleImageChange = (e) => {
@@ -100,7 +101,8 @@ const result= await AddNewProduct(ProductName,ProductPrice,CatigoriesArry,Select
 setLaoding(false);
 if(result){
 
-   setResponceMessage("Product Added secsessfuly");
+
+    setResponceMessage("Product Added secsessfuly");
 
    
 

@@ -1,7 +1,7 @@
  import { useLoaderData, useRevalidator } from "react-router-dom";
 import {UpdateProduct as UpdateProductAPI ,GetProduct,IsAthorized} from "../APIs/Products.js"
 import Styles from "./UpdateProduct.module.css"
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 
 
@@ -27,18 +27,7 @@ const [Loading,setLaoding]=useState(false)
 const FileRef =useRef();
 const {revalidate}=useRevalidator();
 
-useEffect(()=>{
-CatigoriesArry=[]
-
-},[]);
-
-if(LoaderData){     
-   CatigoriesArry=[];
-     LoaderData.catigories.forEach(e=>{CatigoriesArry.push(Number(e))})
-
-
-}
-
+ 
 function handleImageChange(e){
 
     console.log("handleImageChange");
@@ -121,9 +110,7 @@ if(result){
 
 
    setResponceMessage("Product Updated secsessfuly");
-   console.log("LoaderData.imageUrl "+LoaderData.imageUrl)
-   console.log("ImageUrl "+ImageUrl)
-
+ 
    handleClearImage();
    revalidate();
    
@@ -140,7 +127,8 @@ else{
 
   if(IsUserAthorized){
    if(LoaderData){
-        
+      CatigoriesArry=[];
+      LoaderData.catigories.forEach(e=>{CatigoriesArry.push(Number(e))}) 
       ProductID=LoaderData.id;
       ProductName=LoaderData.name;
       ProductPrice=LoaderData.price;
