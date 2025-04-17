@@ -154,8 +154,8 @@ else{
 
 
 const url=process.env.REACT_APP_URL_PAYMENT;
- 
-const Response=await fetch(url,{
+try{
+const Response =await fetch(url,{
 
     method:"POST",
     credentials:"include",
@@ -182,14 +182,14 @@ const Response=await fetch(url,{
        
     
 
-}).catch((error)=>{
-
-    setLoading(false);
-    setMessage("error : "+error.message);
-    return;
 })
-
-if(Response.ok){
+if (!Response.ok) {
+  // handle non-2xx HTTP statuses
+  const FetchingData=await Response.json();
+  throw new Error(`Server error: ${FetchingData.message}`);
+}
+else{
+  if(Response.ok){
 
     setLoading(false);
     const FetchingData=await Response.json();
@@ -197,15 +197,20 @@ if(Response.ok){
     Dispatch(DeleteAll());
    
 
-}else{
-
-  const FetchingData=await Response.json();
-    setLoading(false);
+}
+}
+}catch(e){
+  
     
-    setMessage("Payment field "+FetchingData.message)
-
+  setLoading(false);
+    
+  setMessage("Payment field "+e)
+    return
 
 }
+
+
+
 
  
     }

@@ -49,6 +49,7 @@ ProductName="";
       };
     
    function HandleCatigories(e){
+      
     const value = e.target.value;
  
     const isChecked = e.target.checked;

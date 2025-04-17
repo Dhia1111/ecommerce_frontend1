@@ -147,7 +147,7 @@ else{
 
                <button className={Styles.btn} onClick={()=>{  if(FileRef.current!==null){   FileRef.current.click();      }   }}>chose </button>
     
-              <button  className={Styles.btn} onClick={handleClearImage}>delete</button></div>
+              <button  className={Styles.btn} onClick={handleClearImage}>Defualt</button></div>
 
                 <input type="text"  defaultValue ={LoaderData.name} onChange={(e)=>{ProductName=e.target.value}} placeholder="Name"/>
                 <input type="number" defaultValue={ProductPrice} onChange={(e)=>{ProductPrice=Number(e.target.value);}} name="Price" placeholder="Price"   />
