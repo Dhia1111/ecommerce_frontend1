@@ -7,9 +7,10 @@ import {SetTofalse} from "../State/Cart/CartState.ts"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket as arrowFrombracket} from "@fortawesome/free-solid-svg-icons"
 import { faAnglesRight  as NextIcone} from "@fortawesome/free-solid-svg-icons"
+import { memo } from "react";
 
 
-export default function Cart(){
+export default memo(function Cart(){
    const DispatchApp=useDispatch();
 
    const ShowCart=useSelector((state)=>state.ShowCart.value);
@@ -41,7 +42,7 @@ return (<>
  </div>
     </>)
 }
-
+)
 
 export function Loader(){
    //get the first 5 element in the baseket 
