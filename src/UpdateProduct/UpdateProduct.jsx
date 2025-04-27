@@ -27,7 +27,30 @@ const [Loading,setLaoding]=useState(false)
 const FileRef =useRef();
 const {revalidate}=useRevalidator();
 
- 
+function handlePriceChange(e)  {
+   let inputValue = e.target.value;
+
+   if (inputValue === ""||inputValue<0) {
+      ProductPrice=0;
+      e.target.value=ProductPrice;
+
+     return;
+   }
+
+
+   const parts = inputValue.split(".");
+   if (parts.length === 2 && parts[1].length > 2) {
+      e.target.value=ProductPrice;
+     return; 
+   }
+
+
+   ProductPrice=e.target.value;
+
+
+};
+
+  
 function handleImageChange(e){
 
     console.log("handleImageChange");
@@ -117,7 +140,7 @@ if(result){
 
 }
 else{
-   setResponceMessage("Product Adding failed");
+   setResponceMessage(result);
 }
 
 }
@@ -150,7 +173,7 @@ else{
               <button  className={Styles.btn} onClick={handleClearImage}>Defualt</button></div>
 
                 <input type="text"  defaultValue ={LoaderData.name} onChange={(e)=>{ProductName=e.target.value}} placeholder="Name"/>
-                <input type="number" defaultValue={ProductPrice} onChange={(e)=>{ProductPrice=Number(e.target.value);}} name="Price" placeholder="Price"   />
+                <input type="number" defaultValue={ProductPrice} onChange={(e)=>{handlePriceChange(e)}} name="Price" placeholder="Price"   />
                 <input    type="file"    accept="image/*"    onChange={(e)=>handleImageChange(e)}    ref={FileRef}   style={{ display: 'none' }}    />
              
                 

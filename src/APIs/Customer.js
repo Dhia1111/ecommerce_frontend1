@@ -27,21 +27,51 @@ export async function LogOutAPI() {
   
 
     //Update the cart inf 
-    console.log("process.env.REACT_APP_URL_LogOut :"+process.env.REACT_APP_URL_LogOut);
-    try{
+     try{
 
-        await fetch(process.env.REACT_APP_URL_LogOut,{
+       const Response= await fetch(process.env.REACT_APP_URL_LogOut,{
             method:"POST",
             credentials:"include",
             headers: { "Content-Type": "application/json" },         
         })
-       return true
+if(Response.ok){
+    return true
 
+}
+return false;
    }
    catch{
-    console.log("Catch the request to log out")
-
+ 
        return false;
    }
     
+}
+
+export async function IsLogedIn() {
+
+   try{
+
+    const response =await fetch(process.env.REACT_APP_URL_ISLOGEDIN,{
+
+        method:"GET",
+        credentials:"include",
+        headers: { "Content-Type": "application/json" } 
+     
+    })
+       
+    if(response.ok){
+        return await response.json();
+    }
+    else{
+        return false
+    }
+
+    }
+
+   
+   catch{
+
+    return false
+   }
+  
 }

@@ -6,11 +6,17 @@ export default function DeleteProduct(){
    
     const {DataLoader,IsUserAthorized}=useLoaderData();
    
-    console.log("Atherized "+IsUserAthorized);
-    console.log("DataLoader "+JSON.stringify(DataLoader));
    if(IsUserAthorized===true){
-    if(DataLoader) return (<h2 className={Styles.h2}>Product Deleted Secsessfuly</h2>)
-        else return (<h2 className={Styles.h2}>Product Deleting failed</h2>)
+ 
+    if(DataLoader) return (<h2 className={Styles.h2}>Product deleted secsessfuly </h2>)
+        else {
+
+            return (<>
+            <h2>{DataLoader}</h2>
+            <h2 className={Styles.h2}>Product Deleting failed {DataLoader}</h2>
+            </>)
+        
+        }
         }
 
         else{

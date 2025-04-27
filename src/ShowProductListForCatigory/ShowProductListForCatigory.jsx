@@ -12,7 +12,6 @@ return(
 
 <>
 <NavBar Postion="relative" Color="black" BackGroundColor="white" />
-
 {Title&&<h2 className={Styles.HeadLine}>{Title}</h2>}
 
 

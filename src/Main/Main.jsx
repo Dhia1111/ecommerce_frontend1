@@ -1,44 +1,41 @@
 import Styles from "./Main.module.css";
 import { LayOuts } from "../Data/MainData";
 import NavBar from "../NavBar/NavBar";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { GetProductsForCatigory } from "../APIs/Products.js";
 import SmallCard from "../SmallCard/SmallCard.jsx"
 
 
 import { useLoaderData } from "react-router-dom";
 
+let ItemIndex=0;
 
 export default function Main() {
-
 const MainRef=useRef(null);
-
-const [Active,setAcitve]=useState(0);
 const {NewProduct,PopulerProduct,BestSelling}=useLoaderData();
 
 useEffect(()=>{
-  if(MainRef.current){
 
-    let items= document.getElementsByClassName(Styles.SubContainer);
-   if(items!==null&&items.length>0){
-
-    if(items[Active]){ 
-
-    MainRef.current.style.left=-items[Active].offsetLeft+"px";
- 
-
-    }
-  
-else{
-  console.log("Could not read off set left")
-}
-   
-   }
-  }
 
   const interval = setInterval(() => {
-    setAcitve((prevActive) => (prevActive === LayOuts.length - 1 ? 0 : prevActive + 1));
-    //set prev and next postions 
+    if(MainRef.current){
+
+      let items= document.getElementsByClassName(Styles.SubContainer);
+     if(items!==null&&items.length>0){
+  
+      if(items[ItemIndex]){ 
+  
+      MainRef.current.style.transform = `translateX(-${items[ItemIndex].offsetLeft}px)`
+   
+      }
+    
+  else{
+    console.log("Could not read off set left")
+  }
+     
+     }
+    }
+ItemIndex= ItemIndex === LayOuts.length - 1 ? 0 : ItemIndex + 1;
 
     
     ;
@@ -49,7 +46,7 @@ else{
   return () => clearInterval(interval);
 
 
-},[Active])
+},[])
 
 
   return (

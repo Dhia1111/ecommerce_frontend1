@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import {SetToTrue} from "../State/Cart/CartState.ts"
-import { useEffect } from "react"
+import { memo, useEffect } from "react"
 
 function NavBar({Postion="fixed", Color="white", BackGroundColor="transparent"}){
 
@@ -102,7 +102,7 @@ Bars.style.display="block";
 
 }
 
-export default NavBar
+export default memo(NavBar)
 
 window.addEventListener("resize", (event) => {
   if( window.innerWidth<778){

@@ -27,6 +27,7 @@ padding-left: 10px;
     border-radius: 10px;
     width: 75%;
     margin: auto;
+    min-width: 300px;
 }
 
     .CartInf .input {

@@ -109,10 +109,33 @@ if(result){
 
 }
 else{
-   setResponceMessage("Product Adding failed");
+   setResponceMessage(result);
 }
 
 }
+
+function handlePriceChange(e)  {
+   let inputValue = e.target.value;
+
+   if (inputValue === ""||inputValue<0) {
+      ProductPrice=0;
+      e.target.value=ProductPrice;
+
+     return;
+   }
+
+
+   const parts = inputValue.split(".");
+   if (parts.length === 2 && parts[1].length > 2) {
+      e.target.value=ProductPrice;
+     return; 
+   }
+
+
+   ProductPrice=e.target.value;
+
+
+};
 
   
 
@@ -129,11 +152,10 @@ else{
          {requestError&&<h3>{requestError}</h3>}
          {responceMessage&&<h3>{responceMessage}</h3>}
           <div className={Styles.AddProductJsx}>
-         <div className={Styles.Container}>
-       
-         <div className={Styles.ContainerImg}>       
+          <div className={Styles.Container}>
+          <div className={Styles.ContainerImg}>       
            
-           <div>
+          <div>
        
            <img src={ImageURL} alt=""/>
        
@@ -153,7 +175,17 @@ else{
        </div>
        
        <input type="text" onChange={(e)=>{ProductName=e.target.value;}} placeholder="Product Name"/>
-       <input type="number"  onChange={(e)=>{ProductPrice=e.target.value;}}  placeholder="Price($)"/>
+       <input type="number"  defaultValue={0}  onChange={(e)=>{
+         
+      
+          handlePriceChange(e)
+       
+      
+
+      }
+         
+         
+         }  placeholder="Price($)"/>
        
        </div >
        <div className={Styles.CatigoriesContainer}>

@@ -3,6 +3,7 @@ import Styles from "./LogInAmdSignUp.module.css"
 import { Form,Navigate,useLoaderData } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import { useRef } from "react";
+import { IsLogedIn } from "../APIs/Customer";
 
 
 function LogInAmdSignUp(){
@@ -27,7 +28,6 @@ function LogInAmdSignUp(){
 
    async function LogIn(e){
 
-    console.log("LogIn : "+process.env.REACT_APP_URL_LOGIN);
         e.preventDefault();
         if(ContainerRef.current){
 
@@ -72,17 +72,17 @@ function LogInAmdSignUp(){
 
             setLoggIng(false);
 
+           const Data=await responce.json();
             if(responce.ok){
-              setLogInMessage(responce.text());
+              setLogInMessage(Data?.message);
                 setLogInError("");
 
                
             }
             else{
    
-                const error=await responce.json();
-                setLogInError(error);
-                setLogInMessage("");
+                setLogInError(Data?.errorType);
+                setLogInMessage(Data?.message);
             }
             }
 
@@ -156,19 +156,19 @@ async  function  SignUp(e){
              
             })
  
-            const result = await response.text();
             setSigningUp(false);
+            const Data=await response.json();
             if(response.ok){
 
                
-                setSignUpMessage(result);
+                setSignUpMessage(Data?.message);
+                setSignUpError();
 
-                setSignUpError("");
             }
             else{
 
-                setSignUpError(result);
-                setSignUpMessage("error : "+result);
+                setSignUpMessage(Data?.message);
+                setSignUpError(Data?.errorType);
             }
 
              
@@ -273,18 +273,7 @@ export default LogInAmdSignUp;
 
  
 export async  function Loader(){
-     const response =await fetch(process.env.REACT_APP_URL_ISLOGEDIN,{
-        method:"GET",
-        credentials:"include",
-        headers: { "Content-Type": "application/json" } 
-     
-    })
-    .catch(error => {console.error("Error fetching if the user is loged in:", error);
-        return null;
-    });
 
-    const data=await response.json();
-    return data;
-  
+return await IsLogedIn()    
 
 }

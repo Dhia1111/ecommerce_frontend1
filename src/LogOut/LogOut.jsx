@@ -1,14 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Styles from "./LogOut.module.css"
-import {LogOutAPI} from"../APIs/Customer.js"
-import { useNavigate } from "react-router-dom";
-import NavBar from "../NavBar/NavBar.jsx";
+import {IsLogedIn, LogOutAPI} from"../APIs/Customer.js"
+import { useLoaderData, useNavigate } from "react-router-dom";
+import {}from "../APIs/Customer.js"
+ import NavBar from "../NavBar/NavBar.jsx";
 export default function LogOut(){
+
+    
     const Navigate=useNavigate();
-    const [isLogingOut,setLogInOut]=useState(false);
+    const Loader=useLoaderData(0)
+    const [isLogingIn,setLogInOut]=useState(false);
+
+    useEffect(()=>{
+ 
+if(!Loader){
+
+      Navigate("/", { replace: true });
+
+}},[Navigate,Loader])
+
     return <div className={Styles.Container}>
       <NavBar  BackGroundColor="white" Postion="relative" Color="black"/>
-    <button disabled={isLogingOut} onClick={ async()=>{
+ 
+    <button disabled={isLogingIn} onClick={ async()=>{
           setLogInOut(true);
            
     const result= await LogOutAPI();
@@ -24,9 +38,15 @@ export default function LogOut(){
 
 
 
-        }} >{isLogingOut?"Loging out...":"LogOut"}</button>
+        }} >{isLogingIn?"Loging out...":"LogOut"}</button>
         
         </div>
 }
 
 
+export async function Loader()
+      
+ {
+
+      return await IsLogedIn()
+}

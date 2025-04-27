@@ -4,7 +4,6 @@
 
 
 
-  console.log("Catigories from Add Product"+CatigoriesArry);
 
   const product = {
     "ID": 1,
@@ -24,24 +23,30 @@
   // 4. Append the image file
   formData.append('image', SelectedImage);
  
+ try{ 
   const response =await fetch(process.env.REACT_APP_URL_ADDNEWPRODUCT,{
     method:"Post",
     credentials:"include",
     body:formData,
 })
 
-console.log(response) ;
 
 if(response.ok )
 { 
 
 
-  return response.json()
+  return    true
 
      
 
 }
-return null;
+else{
+return false
+}
+
+}catch{
+return    false
+}
 
 }
 
@@ -69,7 +74,7 @@ console.log("PRoduct Price "+ ProductPrice)
   // 4. Append the image file
   formData.append('image', SelectedImage);
  
-  const response =await fetch(process.env.REACT_APP_URL_UPDATEPRPDUCT,{
+try{  const response =await fetch(process.env.REACT_APP_URL_UPDATEPRPDUCT,{
     method:"Post",
     credentials:"include",
     body:formData,
@@ -81,23 +86,26 @@ if(response.ok )
 { 
 
 
-  return response.json()
+  return  true
 
      
 
 }
-return null;
-
+else{
+return false
 }
 
+}catch(e){
+return e
+}
 
-
+}
 
 export async function DeleteProduct(ProductID) {
 
 
-  console.log("Product ID after in Deete API "+JSON.stringify(ProductID))
-    const response =await fetch(process.env.REACT_APP_URL_DELETEPRODUCT,{
+    
+  try{const response =await fetch(process.env.REACT_APP_URL_DELETEPRODUCT,{
     method:"Post",
     credentials:"include",
     headers: { "Content-Type": "application/json" }, 
@@ -111,62 +119,73 @@ if(response.ok )
     
 
   
-  return response.json()
-
+  return true
      
 
 }
-return null;
-
+else{
+return false}
+  }catch{
+return false;
+  }
     
 }
-
 
 export async function ShowProductList() {
     
+   try{
     const response =await fetch(process.env.REACT_APP_URL_SHOWPRODUCTLIST,{
-        method:"GET",
-        credentials:"include",
-        headers: { "Content-Type": "application/json" } 
-     
-    })
+      method:"GET",
+      credentials:"include",
+      headers: { "Content-Type": "application/json" } 
+   
+  })
 
-    if(response.ok )
-    { 
-        
-    
+   const Data=await response.json();
+  if(response.ok )
+  { 
+      
+  
 
-      return response.json()
+    return Data
 
-         
-    
-    }
-    return null;
-    
+       
+  
+  }
+else{
+  throw new Error(  "Server Error : " + Data?.message  )
+}  
+   }catch(e){
+return e
+   }
     
 }
 
 export async function GetProduct(ProductID) {
 
-      const response =await fetch(process.env.REACT_APP_URL_GETPRODUCT+ProductID,{
-        method:"GET",
-        credentials:"include",
-        headers: { "Content-Type": "application/json" } 
-     
-    })
+   try{
+    const response =await fetch(process.env.REACT_APP_URL_GETPRODUCT+ProductID,{
+      method:"GET",
+      credentials:"include",
+      headers: { "Content-Type": "application/json" } 
+   
+  })
 
-    if(response.ok )
-    { 
-        
-    
+  if(response.ok )
+  { 
       
-      return response.json()
+  
+    
+    return response.json()
 
-         
-    
-    }
-    return null;
-    
+       
+  
+  }
+  return null;
+  
+   }catch{
+return null
+   }
     
 }
 
@@ -185,7 +204,7 @@ if(response.ok )
     
 
   
-  return response.json()
+  return await response.json()
 
      
 
@@ -200,7 +219,6 @@ else return false;
 
 }
 
-
 export async function GetProductsForCatigory( stCatigoryID){
 
   const CatigoryID=Number(stCatigoryID)
@@ -212,6 +230,7 @@ export async function GetProductsForCatigory( stCatigoryID){
     console.log("Invalaid Catigory");
     return;
   }
+
 try{
   
   const response =await fetch(process.env.REACT_APP_URL_GETALLPRODUCTSFROCATIGORY+CatigoryID,{
@@ -221,21 +240,23 @@ try{
  
 })
 
+const Data=await response.json();
 if(response.ok )
 { 
     
 
 
-  return response.json()
+  return  Data
 
      
 
 }
+else{return false}
 }
+
 catch{ return null;}
 
 
-return null;
 
 
 }

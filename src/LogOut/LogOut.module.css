@@ -12,6 +12,14 @@
 
 }
 
+.Container{
+    display: flex
+    ;
+        position: relative;
+        align-items: center;
+        justify-content: space-between;
+        flex-flow: column;
+}
 .Container button:disabled:hover{
     transition-duration:1s ;
     background-color: rgb(25, 52, 52);

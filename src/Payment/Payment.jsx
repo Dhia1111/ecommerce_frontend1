@@ -1,44 +1,21 @@
-import Styles from "./Payment.module.css"
+
+
+ 
+ import Styles from "./Payment.module.css"
 import { useLoaderData } from "react-router-dom"
 import {GetPersonInf} from "../APIs/Customer.js"
 import { CardNumberElement,CardCvcElement,CardExpiryElement,Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useDispatch, useSelector } from "react-redux";
 import { useStripe ,useElements} from "@stripe/react-stripe-js";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { Form } from "react-router-dom";
 import { DeleteAll } from "../State/CartItems/CartItems.ts";
+ import Adress from "../Adress/Adress.jsx"
+import AdressForm from "../Adress/AdressForm.jsx";
+import PaymentProductsList from "./PaymentProductsList.jsx";
 
 
-
-import CartItem from "../Cart_Item/Cart_Item.jsx";
-const countries = [
-  "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argentina", "Armenia", "Australia",
-  "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium",
-  "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei",
-  "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Chad",
-  "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus",
-  "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt",
-  "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji",
-  "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada",
-  "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland",
-  "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan",
-  "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho",
-  "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia",
-  "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia",
-  "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia",
-  "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea",
-  "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea",
-  "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda",
-  "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino",
-  "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone",
-  "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea",
-  "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria",
-  "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago",
-  "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates",
-  "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela",
-  "Vietnam", "Yemen", "Zambia", "Zimbabwe"
-];
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
   
 const cardImages = {
@@ -56,7 +33,7 @@ const cardImages = {
 
 
   function PaymentJSX(){
-  
+    console.log("Run Payment")
   const Strip=useStripe();
   const MyElements=useElements();
   const[Loading,setLoading]=useState(false);
@@ -67,50 +44,29 @@ const cardImages = {
   const [CVCErrore,setCVCErrore]=useState(true);
   const CartItmesList=useSelector((state)=>state.CartItems.value);
   const PersonInf=useLoaderData();
-  const Dispatch=useDispatch();
-
-   const [PersonData, setPersonInf] = useState({
-    firstName: "",
-    lastName: "",
-    phone: "",
-    country: "",
-    city: "",
-    postCode: ""
-    ,email:"" 
-  });
-
-  useEffect(()=>{
- 
-    if(PersonInf!=null){
-      setPersonInf({
-        firstName:PersonInf.firstName,
-        lastName: PersonInf.lastName,
-        phone: PersonInf.phone,
-        country: PersonInf.country,
-        city: PersonInf.city,
-        postCode: PersonInf.postCode
-        ,email:PersonInf.email
-      })
-      if(PersonInf.country===""){
-        setPersonInf(prev => ({
-          ...prev,
-          country: countries[0],
-        }));
-      }
-    }
-
-  },[PersonInf])
+  const {AdressData,Countries,Cities,PostCodes,handleChange}=Adress(PersonInf);
   
+   const Dispatch=useDispatch();
 
-  const handleChange = (e) => {
-  
-    const { name, value } = e.target;
- 
-    setPersonInf(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+ function OnhandleChange(e){
+  const { name, value } = e.target;
+    
+  if(!PersonInf){
+return;
+  }
+         
+  if(name==="Phone"&&PersonInf?.phone){
+    PersonInf.phone=value;
+  }
+ if(name==="FirstName"&&PersonInf?.firstName){
+  PersonInf.firstName=value
+ }
+ if(name==="LastName"&&PersonInf?.LastName){
+  PersonInf.LastName=value
+ }
+
+  }
+
  
   async function Onsubmit(event){
 
@@ -120,7 +76,7 @@ const cardImages = {
             setMessage("thier is an empty elemnst pleas enter you inf ");
         }
         setLoading(true);
-        console.log("Payment is in process andy strip ,elements are valiad");
+        console.log("Payment is in process and  strip elements are valiad");
         setMessage("");
         
         const CardNumber=MyElements.getElement(CardNumberElement);
@@ -169,13 +125,13 @@ const Response =await fetch(url,{
 
       "personInf": {
         "personID": 0,
-        "firstName": PersonData.firstName,
-        "lastName": PersonData.lastName,
-        "email": PersonData.email,
-        "phone": PersonData.phone,
-        "country": PersonData.country,
-        "postCode": PersonData.postCode,
-        "city": PersonData.city
+        "firstName": PersonInf?.firstName||"",
+        "lastName": PersonInf?.lastName||"",
+        "email": PersonInf?.email||"",
+        "phone": PersonInf?.phone||'',
+        "country": AdressData.country,
+        "postCode": AdressData.postCode,
+        "city": AdressData.city
       } 
 
 })
@@ -186,10 +142,9 @@ const Response =await fetch(url,{
 if (!Response.ok) {
   // handle non-2xx HTTP statuses
   const FetchingData=await Response.json();
-  throw new Error(`Server error: ${FetchingData.message}`);
+  throw new Error(`Server error | Message : ${FetchingData.message} | ErrorType :${FetchingData.errorType}`);
 }
 else{
-  if(Response.ok){
 
     setLoading(false);
     const FetchingData=await Response.json();
@@ -198,7 +153,7 @@ else{
    
 
 }
-}
+
 }catch(e){
   
     
@@ -215,10 +170,6 @@ else{
  
     }
 
-    
-
-    
-    const ProductList=useSelector((state)=>state.CartItems.value);
  
     
     const cardStyle = {
@@ -236,83 +187,44 @@ else{
  {PersonInf&&    
 
    <>
+         {Message&&<p>{Message}</p>}
+ 
       <div className={Styles.Container}>
+        <PaymentProductsList/>
         <div className={Styles.SubContainer}>
 
-        <div className={Styles.List}>
-        <h3 className={Styles.h3}>List</h3>
-
-        {
-          ProductList&& ProductList.map((item) => (
-          
-        
-          <CartItem key={item.ProductID} ID={item.ProductID} Name={item.Name} price={item.Price} NumberOfProduct={item.NumberOfItems} image={item.Image} />
-          
-           
-
-          ))
-        }
-
-
-        </div>
-    
+     
         <div className={Styles.PersonInf}>
         <h3>Personal information</h3>
+     
         <input
         type="text"
-        name="firstName"
-        defaultValue={PersonInf.firstName}
-        onChange={handleChange}
+        name="FirstName"
+        defaultValue={PersonInf?.firstName||""}
+        onChange={OnhandleChange}
         placeholder="First Name"
       />
       <input
         type="text"
-        name="lastName"
-        defaultValue={PersonInf.lastName}
-        onChange={handleChange}
+        name="LastName"
+        defaultValue={PersonInf?.lastName||""}
+        onChange={OnhandleChange}
         placeholder="Last Name"
       />
       <input
         type="text"
-        name="phone"
-        defaultValue={PersonInf.phone.length!==0?PersonInf.phone:""}
-        onChange={handleChange}
+        name="Phone"
+        defaultValue={PersonInf?.phone ||""}
+        onChange={OnhandleChange}
         placeholder="Phone"
       />
  
-      
-      <div>
-       <select
-               name="country"
-        defaultValue={PersonInf.country}
-        onChange={(e) => handleChange(e)}
-      >
-         {countries.map((country, idx) => (
-          <option key={idx} value={country}>{country}</option>
-        ))}
-      </select>
-
-    </div>
-
-      <input
-        type="text"
-        name="city"
-        defaultValue={PersonInf.city}
-        onChange={handleChange}
-        placeholder="City"
-      />
-      <input
-        type="text"
-        name="postCode"
-        defaultValue={PersonInf.postCode}
-        onChange={handleChange}
-        placeholder="Post Code"
-      />
+  <AdressForm AdressData={AdressData} Countries={Countries} Cities={Cities} PostCodes={PostCodes} handleChange={handleChange}/>
  
       </div>
 
-      {Message&&<p>{Message}</p>}
-     <Form className={Styles.CartInf}  onSubmit={Onsubmit} method="POST">
+     <Form className={Styles.CartInf}  onSubmit={(e)=>Onsubmit(e)
+     } method="POST">
     {CardNumerErrore&&<p>Invalaid CardNumber</p>}
     <div className={Styles.lableAndElement}> 
     <label >Card Number</label>
@@ -399,7 +311,11 @@ export default function Payment(){
 
 
 export async function Loader(){
+  
+  
+  const  PersonInf  = await GetPersonInf()||null;
+ 
+  return  PersonInf
+  
 
-  return await GetPersonInf();
-    
  }
