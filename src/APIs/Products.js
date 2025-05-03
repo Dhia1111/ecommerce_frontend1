@@ -236,9 +236,8 @@ try{
   const response =await fetch(process.env.REACT_APP_URL_GETALLPRODUCTSFROCATIGORY+CatigoryID,{
     method:"GET",
     credentials:"include",
-    headers: { "Content-Type": "application/json" } 
- 
-})
+    headers: { "Content-Type": "application/json" } ,
+ })
 
 const Data=await response.json();
 if(response.ok )

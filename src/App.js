@@ -26,6 +26,8 @@ import {Loader as AdmineLoader} from"./AdmineLayout/AdmineLayout.jsx";
 import ErrorElement from './Error/ErrorElement.jsx';
 import { Loader as AddProductLoader } from "./AddProduct/AddProduct.jsx"
 import { Loader as LogOutLoader } from "./LogOut/LogOut.jsx"
+import { Loader as PaymentStatusLoader } from './PaymentStatus/PaymentStatuts.jsx';
+import PaymentStatus from './PaymentStatus/PaymentStatuts.jsx';
 
 function App() {
   const MainRoute = createBrowserRouter(createRoutesFromElements(
@@ -39,6 +41,8 @@ function App() {
         <Route replace={true} path='VerifyEmail'  element={<VerifyEmail/>} loader={VerifyEmailLoader} />  
       
       </Route>
+      <Route replace={true} path='PaymentStatus'  element={<PaymentStatus/>} loader={PaymentStatusLoader} />  
+
       <Route path='Admine' element={<AdmineLayOut/>} loader={AdmineLoader} errorElement={<h2>An error due to fetching </h2>}>
 
       <Route path='ProductMangment' element={<ProductMangment/>}>

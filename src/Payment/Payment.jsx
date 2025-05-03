@@ -70,8 +70,9 @@ return;
  
   async function Onsubmit(event){
 
+  
     event.preventDefault();
-
+ 
    if(MyElements===null||Strip===null){
             setMessage("thier is an empty elemnst pleas enter you inf ");
         }
@@ -111,6 +112,7 @@ else{
 
 const url=process.env.REACT_APP_URL_PAYMENT;
 try{
+ 
 const Response =await fetch(url,{
 
     method:"POST",
@@ -130,7 +132,7 @@ const Response =await fetch(url,{
         "email": PersonInf?.email||"",
         "phone": PersonInf?.phone||'',
         "country": AdressData.country,
-        "postCode": AdressData.postCode,
+        "postCodeAndLocation": AdressData.postCode,
         "city": AdressData.city
       } 
 
@@ -145,11 +147,39 @@ if (!Response.ok) {
   throw new Error(`Server error | Message : ${FetchingData.message} | ErrorType :${FetchingData.errorType}`);
 }
 else{
+//Take the SecretPaaymentId and use it to confirem the payment using stripe 
+const Data=await Response.json();
+    const ClientSecret=Data?.clientSecret||"";
+if(ClientSecret===""){
+  setLoading(false); 
+  setMessage("Payment failed due to server error")
+  return
+}
 
-    setLoading(false);
-    const FetchingData=await Response.json();
-    setMessage("Payment added secsessfuly "+FetchingData.message)
-    Dispatch(DeleteAll());
+//handle finsh payment in client site 
+const { error: stripeError, paymentIntent } = await Strip.confirmCardPayment(
+  ClientSecret,
+  {
+    payment_method: {
+      card: CardNumber,
+    
+    },
+    return_url:process.env.REACT_APP_URL_GETFRONT_STATUSUrl
+  }
+);
+
+if (stripeError) {
+  setLoading(false);
+
+  setMessage("Stripe Error "+stripeError.message);
+
+} else if (paymentIntent.status === "succeeded") {
+  setLoading(false)
+  setMessage("Payment added secsessfuly ")
+  Dispatch(DeleteAll());
+
+}
+
    
 
 }
@@ -159,8 +189,8 @@ else{
     
   setLoading(false);
     
-  setMessage("Payment field "+e)
-    return
+  setMessage("Payment failed => "+e)
+    return 
 
 }
 

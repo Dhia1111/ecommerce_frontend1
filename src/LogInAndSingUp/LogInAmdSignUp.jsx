@@ -60,7 +60,7 @@ function LogInAmdSignUp(){
                           "email": "user@example.com",
                           "phone": "",
                           "country": "",
-                          "postCode": "",
+                          "postCodeAndLocation": "",
                           "city": ""
                         }
                       
@@ -147,7 +147,7 @@ async  function  SignUp(e){
                               "email": data.Email,
                               "phone":"",
                               "country": "",
-                              "postCode": "",
+                              "postCodeAndLocation": "",
                               "city": ""
                             }
                           }
