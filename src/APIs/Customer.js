@@ -58,7 +58,7 @@ export async function IsLogedIn() {
         headers: { "Content-Type": "application/json" } 
      
     })
-       
+       console.log("CheckLogIn from api")
     if(response.ok){
         return await response.json();
     }

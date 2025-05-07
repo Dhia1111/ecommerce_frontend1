@@ -121,6 +121,8 @@ async  function  SignUp(e){
         e.preventDefault();
         if(ContainerRef.current){
 
+         try{
+
             setSigningUp(true);
             setSignUpMessage("Fteching.... ");
             setSignUpError("");
@@ -173,6 +175,11 @@ async  function  SignUp(e){
 
              
           
+         }catch{
+
+            setSignUpError("Error : failed to fetch !!!");
+
+         }
         }
         
           
@@ -182,6 +189,8 @@ async  function  SignUp(e){
 
 
 async function ValidateUserName(e){
+  try{
+
     const UserName = e.target.value; 
     console.log("Name is  "+UserName)
     if(UserName.length<4){
@@ -222,8 +231,14 @@ var result=false;
 
    }
 
+  }catch{
+
+  }
+
     
 }
+
+
      const SignUpContent=(
 
         <div className={Styles.SignUpContainer}>

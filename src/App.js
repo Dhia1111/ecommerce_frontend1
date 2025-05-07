@@ -7,7 +7,6 @@ import LogInAmdSignUp from './LogInAndSingUp/LogInAmdSignUp';
 import LogOut from './LogOut/LogOut';
 import AccountLayOut from './AccountLayOut/AccountLayOut';
 import {Loader as LoginLoader} from "./LogInAndSingUp/LogInAmdSignUp"
-import {Loader as VerifyEmailLoader} from "./VerifyEmail/VerifyEmail.jsx"
 import VerifyEmail from './VerifyEmail/VerifyEmail.jsx'
 import AdmineLayOut from './AdmineLayout/AdmineLayout.jsx';
 import ProductMangment from './ProductMangment/ProductMangment.jsx';
@@ -38,7 +37,7 @@ function App() {
       <Route path='accountant-access' element={<AccountLayOut />} errorElement={<h2>An error due to fetching </h2>}>
         <Route index element={<LogInAmdSignUp/>} loader={LoginLoader}  /> 
         <Route   path='logout' element={<LogOut/>}  loader={LogOutLoader}/>  
-        <Route replace={true} path='VerifyEmail'  element={<VerifyEmail/>} loader={VerifyEmailLoader} />  
+        <Route  path='VerifyEmail'  element={<VerifyEmail/>}  />  
       
       </Route>
       <Route replace={true} path='PaymentStatus'  element={<PaymentStatus/>} loader={PaymentStatusLoader} />  

@@ -144,6 +144,7 @@ ItemIndex= ItemIndex === LayOuts.length - 1 ? 0 : ItemIndex + 1;
 
 export async function Loader(){
  
+  console.log("Main Loader Load")
  const[NewProduct,PopulerProduct,BestSelling]=  await Promise.all([GetProductsForCatigory(3), GetProductsForCatigory(2),GetProductsForCatigory(1)]);
    return  { NewProduct, PopulerProduct,BestSelling };
     
