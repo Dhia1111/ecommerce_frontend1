@@ -129,19 +129,18 @@ setLaoding(true);
 
 const result =  await UpdateProductAPI(ProductID,ProductName,ProductPrice,CatigoriesArry,SelectedImage);
 setLaoding(false);
-if(result){
+setResponceMessage(result);
+
+if(result==="Updated Secsessfuly"){
 
 
-   setResponceMessage("Product Updated secsessfuly");
  
    handleClearImage();
    revalidate();
    
 
 }
-else{
-   setResponceMessage(result);
-}
+
 
 }
 

@@ -30,22 +30,17 @@
     body:formData,
 })
 
+const ResponceJson=await response.json();
 
-if(response.ok )
-{ 
-
-
-  return    true
-
-     
-
-}
+if(response.ok){
+  return ("Product Added Secsessfuly , "+ResponceJson?.message);
+}  
 else{
-return false
-}
+  return ("Product Adding failed , "+ResponceJson?.message);
 
+}
 }catch{
-return    false
+return    "Product Adding Failed due to Fetching error"
 }
 
 }
@@ -80,23 +75,22 @@ try{  const response =await fetch(process.env.REACT_APP_URL_UPDATEPRPDUCT,{
     body:formData,
 })
 
-console.log(response) ;
-
+ const ResponceJson=await response.json();
 if(response.ok )
 { 
 
 
-  return  true
+  return  "Updated Secsessfuly"
 
      
 
 }
 else{
-return false
+  return  "Updated Failed"+ResponceJson?.message;
 }
 
-}catch(e){
-return e
+}catch{
+return "Failed to Update due to fetching "
 }
 
 }

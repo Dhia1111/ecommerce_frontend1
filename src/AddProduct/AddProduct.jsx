@@ -95,22 +95,17 @@ return;
 
 
 }
+if(CatigoriesArry.length===0){
+   setError("you must at les choose one Category ")
+return;
+}
 setError("");
 
 setLaoding(true);
 const result= await AddNewProduct(ProductName,ProductPrice,CatigoriesArry,SelectedImage)
 setLaoding(false);
-if(result){
+setResponceMessage(result);
 
-
-    setResponceMessage("Product Added secsessfuly");
-
-   
-
-}
-else{
-   setResponceMessage(result);
-}
 
 }
 
@@ -179,10 +174,8 @@ function handlePriceChange(e)  {
          
       
           handlePriceChange(e)
-       
-      
-
-      }
+  
+         }
          
          
          }  placeholder="Price($)"/>
