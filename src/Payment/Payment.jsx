@@ -2,7 +2,7 @@
 
  
  import Styles from "./Payment.module.css"
-import { useLoaderData } from "react-router-dom"
+import {  useLoaderData } from "react-router-dom"
 import {GetPersonInf} from "../APIs/Customer.js"
 import { CardNumberElement,CardCvcElement,CardExpiryElement,Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -214,6 +214,9 @@ if (stripeError) {
     
     return <>
  
+  <h2 className={Styles.Note}>!!!!!! This is a test Page do not use your Card Information </h2>
+  <a href="https://docs.stripe.com/testing" target="_blank" rel="noopener noreferrer" className={Styles.StripeTestPage}>Test Cards from Stripe</a>
+
  {PersonInf&&    
 
    <>

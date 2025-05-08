@@ -2,6 +2,24 @@
 .Coontainer{
     display: flex;
 }
+.Note{
+    color: red;
+}
+.StripeTestPage{
+    text-decoration: none;
+        background-color: rgb(25, 52, 52);
+        color: white;
+font-size: 24px;
+transition: 1s;
+padding: 10px;
+}
+
+.StripeTestPage:hover{
+    text-decoration: none;
+        background-color: rgba(41, 71, 71, 0.822);
+        color: rgb(86, 62, 62);
+font-size: 24px;
+}
 
 .SubContainer{
     display: flex;
