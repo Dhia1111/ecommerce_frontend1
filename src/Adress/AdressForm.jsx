@@ -42,11 +42,14 @@ export default memo( function AdressForm({AdressData,Countries,Cities,PostCodes,
     
     <div>
  {   PostCodes?.length>0&&   <select
-    name="postCode"
-    value={AdressData?.postCode||PostCodes[0]||""}
-    onChange={OnChange}
-      >
-         {PostCodes&&PostCodes.map((postcode, idx) => (
+    name="postCodeAndLocation"
+    value={AdressData?.postCodeAndLocation||PostCodes[0]||""}
+    
+    onChange={OnChange}>
+
+
+     
+    {PostCodes&&PostCodes.map((postcode, idx) => (
           <option key={idx} value={postcode}>{postcode}</option>
         ))}
       </select>}
