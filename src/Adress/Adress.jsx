@@ -175,7 +175,7 @@ import { GetCities, GetCountries, GetPostCodes } from "../APIs/Location"
         HandCityChange(e)
        }
 
-        else if(e.target.name==="postCode"){
+        else if(e.target.name==="postCodeAndLocation"){
 
             handlAdressChange(e)
         }
