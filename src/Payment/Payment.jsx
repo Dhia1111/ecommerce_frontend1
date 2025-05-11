@@ -48,7 +48,7 @@ const cardImages = {
   
    const Dispatch=useDispatch();
 
-   console.log("Adress data  for payment : "+AdressData);
+   console.log("Adress data  for payment : "+JSON.stringify(AdressData||""));
 
 
  function OnhandleChange(e){
@@ -224,7 +224,7 @@ if (stripeError) {
   <h2 className={Styles.Note}>!!!!!! This is a test Page do not use your Card Information </h2>
   <a href="https://docs.stripe.com/testing" target="_blank" rel="noopener noreferrer" className={Styles.StripeTestPage}>Test Cards from Stripe</a>
 
- {!PersonInf&&    
+ {PersonInf&&    
 
    <>
          {Message&&<p>{Message}</p>}
