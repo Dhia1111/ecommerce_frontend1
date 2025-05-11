@@ -4,7 +4,7 @@ import Styles from "./Adress.module.css"
 
 export default memo( function AdressForm({AdressData,Countries,Cities,PostCodes,handleChange}){
 
-   console.log("Adress Form")
+   console.log("Adress data  for Dome component : "+AdressData);
 
     async function OnChange(e){ 
          await handleChange(e)

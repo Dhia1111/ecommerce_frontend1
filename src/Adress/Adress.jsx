@@ -6,7 +6,6 @@ import { GetCities, GetCountries, GetPostCodes } from "../APIs/Location"
 
 
   function Adress(PersonInf){
-    console.log("Adress ")
 
      const [AdressData,setAdressData]=useState({
 
@@ -88,6 +87,7 @@ import { GetCities, GetCountries, GetPostCodes } from "../APIs/Location"
 
     },[PersonInf])
 
+   console.log("Adress data  for Smart component : "+AdressData);
 
     const handleChange=useCallback((e)=>{
 

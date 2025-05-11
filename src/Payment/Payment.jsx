@@ -48,6 +48,9 @@ const cardImages = {
   
    const Dispatch=useDispatch();
 
+   console.log("Adress data  for payment : "+AdressData);
+
+
  function OnhandleChange(e){
   const { name, value } = e.target;
     
@@ -67,7 +70,7 @@ return;
 
   }
 
- 
+
   async function Onsubmit(event){
 
   
@@ -105,8 +108,13 @@ if(error){
 else{
     console.log( "PaymentMethod : "+ paymentMethod.id);
 }
-//create a Guid  to send to the payment  to make sure the user does not pay toise and store it into ;
- 
+
+//Set PersonInf 
+
+   
+
+
+
  console.log("calling API");
 
 
@@ -118,6 +126,7 @@ const Response =await fetch(url,{
     method:"POST",
     credentials:"include",
     headers: { "Content-Type": "application/json" },
+
 
     body: JSON.stringify(
 {
@@ -200,8 +209,6 @@ if (stripeError) {
  
     }
 
- 
-    
     const cardStyle = {
         style: {
           base: {
@@ -217,7 +224,7 @@ if (stripeError) {
   <h2 className={Styles.Note}>!!!!!! This is a test Page do not use your Card Information </h2>
   <a href="https://docs.stripe.com/testing" target="_blank" rel="noopener noreferrer" className={Styles.StripeTestPage}>Test Cards from Stripe</a>
 
- {PersonInf&&    
+ {!PersonInf&&    
 
    <>
          {Message&&<p>{Message}</p>}
