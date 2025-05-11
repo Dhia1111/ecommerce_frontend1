@@ -141,7 +141,7 @@ const Response =await fetch(url,{
         "email": PersonInf?.email||"",
         "phone": PersonInf?.phone||'',
         "country": AdressData.country,
-        "postCodeAndLocation": AdressData.postCode,
+        "postCodeAndLocation": AdressData.postCodeAndLocation,
         "city": AdressData.city
       } 
 

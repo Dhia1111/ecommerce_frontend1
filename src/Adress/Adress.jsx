@@ -11,7 +11,7 @@ import { GetCities, GetCountries, GetPostCodes } from "../APIs/Location"
 
         country:"",
         city:"",
-        postCode:"",
+        postCodeAndLocation:"",
 
      })
      const [Countries,setCountries]=useState([])
@@ -49,7 +49,7 @@ import { GetCities, GetCountries, GetPostCodes } from "../APIs/Location"
                 
                     const PostCodes=await GetPostCodes(PersonInf?.country||"",PersonInf?.city||"")||[];
 
-                    setAdressData((p)=>({...p,postCode:PersonInf?.postCode||PostCodes[0]||""}))
+                    setAdressData((p)=>({...p,postCodeAndLocation:PersonInf?.postCodeAndLocation||PostCodes[0]||""}))
    setPostCodes(PostCodes);
                   
                 }
@@ -69,7 +69,7 @@ import { GetCities, GetCountries, GetPostCodes } from "../APIs/Location"
                         if(Cities[0]){
 
                             const PostCodes=GetPostCodes(Countries[0],Cities[0])||[]
-                            setAdressData((p)=>({...p,postCode:PostCodes[0]||""}))
+                            setAdressData((p)=>({...p,postCodeAndLocation:PostCodes[0]||""}))
 
                             setPostCodes(PostCodes);
                             
@@ -121,11 +121,11 @@ import { GetCities, GetCountries, GetPostCodes } from "../APIs/Location"
          const NewPosts=await GetPostCodes(AdressData.country,value)||[]
          setPostCodes(NewPosts);
          const PostCode0=NewPosts[0]
-         setAdressData(prev => ({ ...prev, postCode: PostCode0 }));
+         setAdressData(prev => ({ ...prev, postCodeAndLocation: PostCode0 }));
         
         }  
         else{
-          setAdressData(prev => ({ ...prev, postCode: "" }));
+          setAdressData(prev => ({ ...prev, postCodeAndLocation: "" }));
         
         }
         
@@ -147,11 +147,11 @@ import { GetCities, GetCountries, GetPostCodes } from "../APIs/Location"
               const dtPostCodes = await GetPostCodes(country, city0) || [];
               setPostCodes(dtPostCodes);
               if(dtPostCodes.length!==0){
-                setAdressData(prev => ({ ...prev, postCode: dtPostCodes[0] }));
+                setAdressData(prev => ({ ...prev, postCodeAndLocation: dtPostCodes[0] }));
         
           
               }else{
-                setAdressData(prev => ({ ...prev, postCode: "" }));
+                setAdressData(prev => ({ ...prev, postCodeAndLocation: "" }));
         
                 
               }
