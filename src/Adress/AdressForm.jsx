@@ -11,7 +11,7 @@ export default memo( function AdressForm({AdressData,Countries,Cities,PostCodes,
 
   
 
-     return <div>
+     return <div className={Styles.Main}>
 
       
 <div className={Styles.Container}>
@@ -29,7 +29,7 @@ export default memo( function AdressForm({AdressData,Countries,Cities,PostCodes,
 
     </div>
 
-    <div>
+    <div  className={Styles.Container}>
       {Cities?.length>0&& <select  className={Styles.Selecter}
                name="city"
        value={AdressData?.city||Cities[0]||""}
@@ -45,7 +45,7 @@ export default memo( function AdressForm({AdressData,Countries,Cities,PostCodes,
 
     </div>
     
-    <div>
+    <div  className={Styles.Container}>
  {   PostCodes?.length>0&&   <select  className={Styles.Selecter}
     name="postCodeAndLocation"
     value={AdressData?.postCodeAndLocation||PostCodes[0]||""}

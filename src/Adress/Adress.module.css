@@ -1,17 +1,25 @@
 
+.Main{
+ display: flex
+;
+    flex-wrap: wrap;
+    gap: 26px;
+}
 .Container{
-    display: flex;
-    justify-content:  space-between;
+        display: flex
+;
     flex-flow: row;
+    justify-content: space-between;
 }
 
 .Container .Selecter{
-          height: 40px;
-    border-radius: 2px;
-    color: black;
-    border: 1px solid black;
+align-content: center;
     align-items: center;
-    min-width: 172px;
-    align-content: center;
+    border: 1px solid #000;
+    border-radius: 2px;
+    color: #000;
+    height: 40px;
+    min-width: 173px;
+    width: 100px;
     padding: 6px;
 }
