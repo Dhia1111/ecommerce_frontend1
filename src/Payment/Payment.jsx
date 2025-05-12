@@ -48,7 +48,6 @@ const cardImages = {
   
    const Dispatch=useDispatch();
 
-   console.log("Adress data  for payment : "+JSON.stringify(AdressData||""));
 
 
  function OnhandleChange(e){
@@ -212,7 +211,7 @@ if (stripeError) {
     const cardStyle = {
         style: {
           base: {
-            fontSize: "23px",
+            fontSize: "11px",
             color: "#333"
             
           ,}}
@@ -221,23 +220,36 @@ if (stripeError) {
     
     return <>
  
-  <h2 className={Styles.Note}>!!!!!! This is a test Page do not use your Card Information </h2>
-  <a href="https://docs.stripe.com/testing" target="_blank" rel="noopener noreferrer" className={Styles.StripeTestPage}>Test Cards from Stripe</a>
 
  {PersonInf&&    
 
    <>
+   <div className={Styles.Deploymentinformation}>
+    <h2 className={Styles.Note}>!!!!! This is a test Page do not use your Card Information </h2>
+  <a href="https://docs.stripe.com/testing" target="_blank" rel="noopener noreferrer" className={Styles.StripeTestPage}> Use Test Cards from Stripe</a>
+
+</div>
          {Message&&<p>{Message}</p>}
  
       <div className={Styles.Container}>
-        <PaymentProductsList/>
         <div className={Styles.SubContainer}>
 
      
-        <div className={Styles.PersonInf}>
-        <h3>Personal information</h3>
+
+   
+ 
+ <div className={Styles.ErrorDiv}>
+  
+    {CardNumerErrore&&<p>Invalaid CardNumber</p>}
+    {ExparationErrore&&<p>Invalaid Exparation Date</p>}
+    {CVCErrore&&<p>Invalaid CVC</p>}
      
-        <input
+</div>
+
+     <Form className={Styles.CartInf}  onSubmit={(e)=>Onsubmit(e)
+     } method="POST">
+
+     <input
         type="text"
         name="FirstName"
         defaultValue={PersonInf?.firstName||""}
@@ -260,14 +272,9 @@ if (stripeError) {
       />
  
   <AdressForm AdressData={AdressData} Countries={Countries} Cities={Cities} PostCodes={PostCodes} handleChange={handleChange}/>
- 
-      </div>
 
-     <Form className={Styles.CartInf}  onSubmit={(e)=>Onsubmit(e)
-     } method="POST">
-    {CardNumerErrore&&<p>Invalaid CardNumber</p>}
     <div className={Styles.lableAndElement}> 
-    <label >Card Number</label>
+
     
     <div className={Styles.imgCardNumberBox}> 
     {cardBrand!=="unknown"&&<img className={Styles.img} src={cardImages[cardBrand]} alt="Card Brand"  />
@@ -287,8 +294,7 @@ if (stripeError) {
 
 </div>
 
-{CVCErrore&&<p>Invalaid CVC</p>}
-<div className={Styles.lableAndElement}>  <label >CVC</label>
+<div className={Styles.lableAndElement}>  
   <CardCvcElement options={cardStyle}  className={Styles.input}   onChange={(event)=>{ 
      if(event.error||event.empty||!event.complete){
 
@@ -298,8 +304,8 @@ if (stripeError) {
 
  }}/>
 </div>
-{ExparationErrore&&<p>Invalaid Exparation Date</p>}
-<div className={Styles.lableAndElement}>  <label >Ecparation Date</label>
+
+<div className={Styles.lableAndElement}> 
   <CardExpiryElement options={cardStyle}  className={Styles.input}   onChange={(event)=>{ 
      if(event.error||event.empty||!event.complete){
 
@@ -323,6 +329,8 @@ if (stripeError) {
          
          
         
+          <PaymentProductsList/>
+
     </div>
    </>
          

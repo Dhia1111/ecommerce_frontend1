@@ -87,7 +87,6 @@ import { GetCities, GetCountries, GetPostCodes } from "../APIs/Location"
 
     },[PersonInf])
 
-   console.log("Adress data  for Smart component : "+JSON.stringify(AdressData||""));
 
     const handleChange=useCallback((e)=>{
 

@@ -4,17 +4,18 @@ import Styles from "./Adress.module.css"
 
 export default memo( function AdressForm({AdressData,Countries,Cities,PostCodes,handleChange}){
 
-   console.log("Adress data  for Dome component : "+JSON.stringify(AdressData||""));
 
     async function OnChange(e){ 
          await handleChange(e)
     }
 
-    return <div>
+  
+
+     return <div>
 
       
 <div className={Styles.Container}>
-      {Countries?.length>0&& <select
+      {Countries?.length>0&& <select  className={Styles.Selecter}
                name="country"
          value={AdressData?.country||Countries[0]||""}
         onChange={OnChange}
@@ -22,12 +23,14 @@ export default memo( function AdressForm({AdressData,Countries,Cities,PostCodes,
          {Countries&&Countries.map((country, idx) => (
           <option key={idx} value={country}>{country}</option>
         ))}
+
+
       </select>}
 
     </div>
 
     <div>
-      {Cities?.length>0&& <select
+      {Cities?.length>0&& <select  className={Styles.Selecter}
                name="city"
        value={AdressData?.city||Cities[0]||""}
        onChange={OnChange}
@@ -36,12 +39,14 @@ export default memo( function AdressForm({AdressData,Countries,Cities,PostCodes,
           <option key={idx} value={city}>{city}</option>
 
         ))}
+<input value={"Test"}  placeholder="Test"/>
+
       </select>}
 
     </div>
     
     <div>
- {   PostCodes?.length>0&&   <select
+ {   PostCodes?.length>0&&   <select  className={Styles.Selecter}
     name="postCodeAndLocation"
     value={AdressData?.postCodeAndLocation||PostCodes[0]||""}
     
@@ -52,13 +57,16 @@ export default memo( function AdressForm({AdressData,Countries,Cities,PostCodes,
     {PostCodes&&PostCodes.map((postcode, idx) => (
           <option key={idx} value={postcode}>{postcode}</option>
         ))}
+
       </select>}
+
 
     </div>
   
 
     </div>
+   }
 
+ 
 
-
-})
+)
