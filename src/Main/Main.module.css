@@ -345,5 +345,19 @@ color: white;
       height: 100%;
     }
 
+    
+  .SubContainer {
+    display: flex;
+    position: relative;
+     text-align: left;
+    width: 100vw;
+    z-index: 0;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+    height: 100%;
+  }
+  
+
   }
   
