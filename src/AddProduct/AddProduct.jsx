@@ -278,7 +278,7 @@ function handlePriceChange(e)  {
 export async function Loader(){
 
 
- return await IsAthorized();
+ return await IsAthorized(32);
 
     
 }

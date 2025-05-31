@@ -39,8 +39,7 @@ export default memo( function AdressForm({AdressData,Countries,Cities,PostCodes,
           <option key={idx} value={city}>{city}</option>
 
         ))}
-<input value={"Test"}  placeholder="Test"/>
-
+ 
       </select>}
 
     </div>

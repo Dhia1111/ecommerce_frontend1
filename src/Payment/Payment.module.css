@@ -14,19 +14,28 @@ flex-wrap: wrap;
    text-decoration: none;
     background-color: #607D8B;
     color: white;
-    font-size: 3px;
+    font-size: 15px;
+    height: 30.5px;
+        width: 250px;
     transition: 1s;
     padding: 7px;
 transition: 1s;
-border-radius: 10px;
-overflow: hidden;
+border-top-left-radius: 7px ;
+border-bottom-left-radius: 7px ;
+position: relative;
+}
+.StripeTestPage::after{
+  content: "";
+    position: absolute;
+    border: 15.5px solid white;
+    border-left-color: rgb(30, 141, 145);
+    left: 100%;
+    top: 0;
 }
 
 .StripeTestPage:hover{
     text-decoration: none;
          color:black;
-font-size: 22px;
-width: 100px;
 }
 
 .SubContainer{
@@ -142,7 +151,8 @@ height: 40px;
 .Deploymentinformation{
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 10;
+    flex-wrap: wrap;
     
 }
 
@@ -175,12 +185,9 @@ height: 40px;
         .Note{
             font-size: 13px;
         }
-        .StripeTestPage:hover{
-                        font-size: 14px;
-
-        }
+   
          .StripeTestPage{
-        font-size: 6px;
+        font-size: 15px;
          }
          .Container,.Deploymentinformation{
             margin: 20px;

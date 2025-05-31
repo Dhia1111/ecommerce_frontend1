@@ -1,0 +1,40 @@
+
+.btnDelete{
+    background-color: rgb(214, 12, 69);
+    color: white;
+    padding: 1px 6px ;
+    font-size: large;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+
+
+
+        box-shadow: 0px 2px 7px 0px black;
+}
+.btnDelete:hover{
+    background-color: rgba(214,12,69, 0.477);
+}
+.btnDelete:disabled:hover{
+    cursor: not-allowed;
+}
+
+
+.btn{
+background-color: rgb(55, 82, 100);
+color: white;
+border: 0px;
+    padding:  6px ;
+  font-size: medium;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn:hover{
+   
+    background-color: rgba(55, 82, 100, 0.797);
+
+}
+.btn:disabled:hover{
+    cursor: not-allowed;
+}

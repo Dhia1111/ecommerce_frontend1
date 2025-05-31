@@ -9,5 +9,6 @@ export default function ProductMangment(){
     <h2 className={Styles.h2}>ProductMangment</h2>
 
      <Outlet/>
+     
     </>)
 }

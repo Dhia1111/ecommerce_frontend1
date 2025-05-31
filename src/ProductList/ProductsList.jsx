@@ -9,7 +9,7 @@ export default function ProductsList(){
 const {ShowProductList,IsUserAthorized}=useLoaderData();
 
 if(IsUserAthorized){
- if(ShowProductList) {
+ if(ShowProductList!=null&&ShowProductList?.length>0){
              const List= ShowProductList.map((product)=>{
              return(
             <div key={product.id} className={Styles.ListContainer}>
@@ -18,6 +18,7 @@ if(IsUserAthorized){
             <span>{product.price+"$"}</span>
             <Link  to={`/Admine/ProductMangment/UpdateProduct?ProductID=${product.id}`}>Update</Link>
             <Link to={`/Admine/ProductMangment/DeleteProduct?ProductID=${product.id}`}>Delete</Link>
+            <Link to={`/Admine/ProductMangment/ClearProductFromSerch?ProductID=${product.id}`}>Clear Catigories</Link>
          </div>
          )
 
@@ -55,7 +56,7 @@ else{
 
 export async function Loader(){
 
-     const[ShowProductList,IsUserAthorized]=  await Promise.all([ShowProductListAPI(), IsAthorized()]);
+     const[ShowProductList,IsUserAthorized]=  await Promise.all([ShowProductListAPI(), IsAthorized(256)]);
        return  { ShowProductList, IsUserAthorized };
         
    

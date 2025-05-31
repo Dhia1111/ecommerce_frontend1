@@ -1,0 +1,67 @@
+
+.img{
+    width: 100px;
+    
+}
+
+.TransactionInf{
+
+    text-align: left;
+    margin: 10px;
+}
+.subContainer{
+  
+    display: flex;
+     flex-flow: column;
+    justify-content: center;
+
+    flex: 1;
+
+background-color: rgba(29, 79, 82, 0.222);
+border-radius: 4px;
+margin: 10px;
+padding: 10px;
+min-width: 300px
+
+;
+
+}
+.Container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+justify-content: flex-start;
+position: relative;
+    
+}
+
+.IncludedProducts{
+    font-size: 14px;
+    display: grid;
+    row-gap: 10px;
+   column-gap: 10px;
+   
+
+}
+
+.Product{
+    background-color: rgba(255, 255, 255, 0.498);
+    margin: 3px;
+    border-radius: 4px;
+    align-self: center;
+    width: 164px;
+    align-self: center;
+}
+
+.h3,.h2{
+
+    width: 100%;
+       overflow-wrap: break-word; 
+  word-break: break-all; 
+}
+
+.p{
+    width: 100%;
+  overflow-wrap: break-word; 
+  word-break: break-all; 
+}

@@ -99,12 +99,11 @@ export async function DeleteProduct(ProductID) {
 
 
     
-  try{const response =await fetch(process.env.REACT_APP_URL_DELETEPRODUCT,{
-    method:"Post",
+  try{const response =await fetch(process.env.REACT_APP_URL_DELETEPRODUCT+ProductID,{
+    method:"DELETE",
     credentials:"include",
     headers: { "Content-Type": "application/json" }, 
 
-    body:JSON.stringify(ProductID),
  
 })
 
@@ -119,7 +118,41 @@ if(response.ok )
 }
 else{
 return false}
-  }catch{
+  }
+  catch{
+return false;
+  }
+    
+}
+
+
+export async function DeleteCatigoriesFroProduct(ProductID) {
+
+
+    
+  try{
+    const response =await fetch(process.env.REACT_APP_URL_DELETE_CATIGORIE_FOR_PRODUCT+ProductID,{
+    method:"DELETE",
+    credentials:"include",
+    headers: { "Content-Type": "application/json" }, 
+
+ 
+})
+
+if(response.ok )
+{ 
+    
+
+  
+  return true
+     
+
+}
+else{
+return false
+}
+  }
+  catch{
 return false;
   }
     
@@ -183,10 +216,12 @@ return null
     
 }
 
-export async function IsAthorized() {
+
+export async function IsAthorized(AthorizationKey) {
+  const key=Number(AthorizationKey)
 
  try{
-  const response =await fetch(process.env.REACT_APP_URL_ISATHORIZED,{
+  const response =await fetch(process.env.REACT_APP_URL_ISATHORIZED+key,{
     method:"GET",
     credentials:"include",
     headers: { "Content-Type": "application/json" } 
@@ -198,7 +233,7 @@ if(response.ok )
     
 
   
-  return await response.json()
+  return true;
 
      
 
@@ -212,6 +247,9 @@ else return false;
  }
 
 }
+
+
+
 
 export async function GetProductsForCatigory( stCatigoryID){
 

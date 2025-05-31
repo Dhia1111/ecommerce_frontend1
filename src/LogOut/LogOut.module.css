@@ -1,5 +1,5 @@
 
-.Container button:hover{
+.Container button:hover,.Container .link:hover{
     background-color: rgb(76, 94, 94);
     transition-duration:1s ;
 }
@@ -17,8 +17,9 @@
     ;
         position: relative;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-evenly;
         flex-flow: column;
+        gap: 20px;
 }
 .Container button:disabled:hover{
     transition-duration:1s ;
@@ -27,14 +28,47 @@
 }
 
 .Container button{
-    background-color: rgb(25, 52, 52);
-    width: 160px;
-    padding: 10px;
-    height: 80px;
+  background-color: rgb(25, 52, 52);
+    height: 31px;
     text-align: center;
     color: white;
     border: 0px;
     cursor: pointer;
-    margin:20% auto;
-    border-radius: 10px;
+    width: fit-content;
+    padding: 10px 52px;
+    position: relative;
+    align-self: flex-start;
+}
+.Container .link{
+    text-decoration: none;
+  background-color: rgb(25, 52, 52);
+    height: 31px;
+    text-align: center;
+    color: white;
+    border: 0px;
+    cursor: pointer;
+    width: fit-content;
+    padding: 7px 28px;
+    position: relative;
+    align-self: flex-start;    
+
+}
+.Container button::after{
+    content: "";
+  position: absolute;
+  border: 15.5px solid white;
+  border-right-color: red;
+left: 0;
+transform: translate(-100%);
+top:0;
+  
+}
+
+.Container .link:after{
+    content: "";
+  position: absolute;
+  border: 15.5px solid white;
+  border-left-color: rgb(30, 141, 145);
+left: 100%;
+top:0;
 }

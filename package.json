@@ -11,6 +11,7 @@
     "@reduxjs/toolkit": "^2.6.0",
     "@stripe/react-stripe-js": "^3.5.1",
     "@stripe/stripe-js": "^6.1.0",
+    "@syncfusion/ej2-react-grids": "^29.2.4",
     "cra-template": "1.2.0",
     "gsap": "^3.12.7",
     "react": "^19.0.0",

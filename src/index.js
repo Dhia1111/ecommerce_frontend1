@@ -5,7 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Store } from './State/State.ts';
 import { Provider } from 'react-redux';
-
+import {registerLicense} from "@syncfusion/ej2-base"
+registerLicense("Ngo9BigBOggjHTQxAR8/V1NNaF1cWWhIfEx1RHxQdld5ZFRHallYTnNWUj0eQnxTdEBjXH5YcHNXQ2RdWEFwXElfag==")
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 

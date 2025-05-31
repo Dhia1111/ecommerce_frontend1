@@ -49,6 +49,7 @@ return false;
 
 export async function IsLogedIn() {
 
+
    try{
 
     const response =await fetch(process.env.REACT_APP_URL_ISLOGEDIN,{

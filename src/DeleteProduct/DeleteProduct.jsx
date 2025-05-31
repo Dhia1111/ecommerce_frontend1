@@ -5,10 +5,14 @@ import Styles from "./DeleteProduct.module.css"
 export default function DeleteProduct(){
    
     const {DataLoader,IsUserAthorized}=useLoaderData();
-   
+       console.log("Clear result : "+ DataLoader)
+
    if(IsUserAthorized===true){
  
-    if(DataLoader) return (<h2 className={Styles.h2}>Product deleted secsessfuly </h2>)
+    if(DataLoader){
+         return (<h2 className={Styles.h2}>Product deleted secsessfuly </h2>)
+        }
+  
         else {
 
             return (<>
@@ -29,7 +33,6 @@ export default function DeleteProduct(){
    
 export async function Loader({request}) {
 
- console.log("Delete ProductLoader : ");
 
     const IsUserAthorized=await IsAthorized();
     if(IsUserAthorized===false){

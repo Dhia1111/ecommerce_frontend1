@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect,useState } from "react";
+import { Link } from "react-router-dom";
 import Styles from "./LogOut.module.css"
 import {IsLogedIn, LogOutAPI} from"../APIs/Customer.js"
 import { useLoaderData, useNavigate } from "react-router-dom";
@@ -8,7 +9,7 @@ export default function LogOut(){
 
     
     const Navigate=useNavigate();
-    const Loader=useLoaderData(0)
+    const Loader=useLoaderData()
     const [isLogingIn,setLogInOut]=useState(false);
 
     useEffect(()=>{
@@ -21,7 +22,9 @@ if(!Loader){
 
     return <div className={Styles.Container}>
       <NavBar  BackGroundColor="white" Postion="relative" Color="black"/>
- 
+
+          <Link className={Styles.link} to="/Admine">Admine</Link>
+       <Link className={Styles.link} to="/Customer/AccountSetting">Setting</Link>
     <button disabled={isLogingIn} onClick={ async()=>{
           setLogInOut(true);
            
@@ -44,9 +47,7 @@ if(!Loader){
 }
 
 
-export async function Loader()
-      
+export async function Loader()      
  {
-
       return await IsLogedIn()
 }

@@ -4,6 +4,7 @@ import { Form,Navigate,useLoaderData } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import { useRef } from "react";
 import { IsLogedIn } from "../APIs/Customer";
+import { useNavigate } from "react-router-dom";
 
 
 function LogInAmdSignUp(){
@@ -17,6 +18,7 @@ function LogInAmdSignUp(){
     const [LoggingIn,setLoggIng]=useState(false);
      const ContainerRef=useRef(null);
      const LoaderData=useLoaderData();
+     const Navigatefn=useNavigate();
     
 
      if(LoaderData===true)
@@ -77,17 +79,18 @@ function LogInAmdSignUp(){
               setLogInMessage(Data?.message);
                 setLogInError("");
 
+                Navigatefn("logout",{replace:true})
                
             }
             else{
-   
-                setLogInError(Data?.errorType);
+                  setLogInError(Data?.errorType);
                 setLogInMessage(Data?.message);
             }
             }
 
             catch{
                 setLogInMessage("failed to log in please check the UserName and the  PassWord ");
+            setLoggIng(false);
 
             }
 
@@ -165,6 +168,7 @@ async  function  SignUp(e){
                
                 setSignUpMessage(Data?.message);
                 setSignUpError();
+                // Navigate to the log Out Page
 
             }
             else{
@@ -178,6 +182,7 @@ async  function  SignUp(e){
          }catch{
 
             setSignUpError("Error : failed to fetch !!!");
+            setSigningUp(false);
 
          }
         }
@@ -288,6 +293,8 @@ export default LogInAmdSignUp;
 
  
 export async  function Loader(){
+
+
 
 return await IsLogedIn()    
 

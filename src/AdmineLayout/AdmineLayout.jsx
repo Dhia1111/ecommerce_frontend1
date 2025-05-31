@@ -2,19 +2,20 @@
 import Styles from "./AdmineLayout.module.css"
 import { Outlet, useLoaderData } from "react-router-dom"
 import { IsAthorized } from "../APIs/Products"
-
+import NavBar from "../AdmineNavBar/NavBar.jsx"
 
 export default function AdmineLayOut(){
 
     const LoaderData=useLoaderData();
 
-  return(  <>
-  
+  return(  <div className={Styles.Container}>
+  <NavBar Color="black" Postion="relative" />
+
     {LoaderData&& 
-    <>
-        <h2 className={Styles.h2}>Admine</h2>
-        <Outlet/>
-     </>   
+    
+
+        <Outlet />
+      
      }
     
           {!LoaderData&&
@@ -27,7 +28,7 @@ export default function AdmineLayOut(){
                 
             }
         
-        </>)
+        </div>)
         }
 
 
