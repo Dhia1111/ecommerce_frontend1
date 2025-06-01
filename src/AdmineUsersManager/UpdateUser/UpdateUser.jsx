@@ -15,7 +15,7 @@ export default function UpdateUser(){
    
 
   const LoacationData=useLocation();
-const {AllAthorization,AllRoles}=useLoaderData();
+const {AllAthorization,AllRoles,isAthorizedResponse}=useLoaderData();
 const urlAdmineBT=useRef(null)
 const urlCustomerBT=useRef(null)
 const urlAthorizedUserBT=useRef(null)
@@ -53,6 +53,9 @@ setNewAthorizations(AllAthorization.filter((auth)=>(Number(auth.key)&Number(Loac
       //Build the Athorizations 
       // and set up the role 
 
+    
+
+
       const objUser={
     "userID":User.userID,
     "personID": User.personID,
@@ -87,23 +90,23 @@ setNewAthorizations(AllAthorization.filter((auth)=>(Number(auth.key)&Number(Loac
       function handleCheckAthorization(event) {
    
       const target=event.target;
-      const ID=Number(target.id);
+      const key=Number(target.id);
 
        
       if(target.checked){
 
-       if(!NewAthorizations.some(e=>Number(e.key)===ID)){
+       if(!NewAthorizations.some(e=>Number(e.key)===key)){
 
 
-        setNewAthorizations(Athorizations=>[...Athorizations,{key:ID,value:target.value}])
+        setNewAthorizations(Athorizations=>[...Athorizations,{key:key,value:target.value}])
 
         }
       }
       else{
                
-      if(NewAthorizations.some(e=>Number(e.key)===Number(ID))){
+      if(NewAthorizations.some(e=>Number(e.key)===Number(key))){
 
-      setNewAthorizations(NewAthorizations.filter(e=>Number(e.key)!==Number(ID)).map(element=>element))
+      setNewAthorizations(NewAthorizations.filter(e=>Number(e.key)!==Number(key)).map(element=>element))
 
       }
 
@@ -155,7 +158,8 @@ setUser(prev=>({
   
 }
 
-    if(User!=null&&AllAthorization?.length>0&&AllRoles?.length>0){
+if(isAthorizedResponse===true){
+  if(User!=null&&AllAthorization?.length>0&&AllRoles?.length>0){
 
    return (
 
@@ -225,20 +229,26 @@ setUser(prev=>({
 
         return <h2>thier is not user to display</h2>
     }
+}
+
+else{
+  return <h2>Not Athorized</h2>
+}
+    
   
 }
 
 
 export async function Loader(){
- const [authResponse, rolesResponse,IsAthorized] = await Promise.all([
+ const [authResponse, rolesResponse,IsAthorizedResponse] = await Promise.all([
       GetUserAthorization(),
       GetUserRoles(),
-      Is()
+      IsAthorized(1)
     ]);
 
 
     if(authResponse.state===1&&rolesResponse.state===1){
-return {AllAthorization:authResponse.Data,AllRoles:rolesResponse.Data};
+return {AllAthorization:authResponse.Data,AllRoles:rolesResponse.Data,isAthorizedResponse:IsAthorizedResponse};
     }
     else{
         return {}

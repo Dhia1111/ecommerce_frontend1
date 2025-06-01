@@ -1,6 +1,7 @@
 
 import {GridComponent,ColumnDirective,ColumnsDirective} from "@syncfusion/ej2-react-grids";
 import { DeleteTrasnaction, GetAllTransactions } from "../../APIs/Transaction";
+import {IsAthorized} from "../../APIs/Products"
 import Styles from "./TransactionList.module.css"
 import { useEffect, useState} from "react";
 import { useLoaderData,useNavigate } from "react-router-dom";
@@ -22,7 +23,8 @@ export default function TransactionList(){
     const [DataSource, setDataSource] = useState([]);
     const [Message, setMessage] = useState("");
     const [columns, setColumns] = useState([]);
-    const [TransactionArry] = useState(useLoaderData());
+    const {IsUserAthorized,AllTransactions}=useLoaderData();
+    const [TransactionArry] = useState(AllTransactions);
     const [blockActions,setBlockActions]=useState(false);
     const Navigate=useNavigate()
 
@@ -51,6 +53,16 @@ export default function TransactionList(){
 
     
     const  handleDelete = async(rowData) => {
+                setBlockActions(true);
+             const AthorizationResponse=await IsAthorized(8);
+
+        if(!AthorizationResponse){
+            setMessage("your not Athorized to delete Transaction")
+                    setBlockActions(false);
+                    return;
+
+        }
+ 
         // Get the first value of the row
         setBlockActions(true);
         const ID = rowData.id;
@@ -73,7 +85,16 @@ export default function TransactionList(){
 
     
     const  handleShowDetails = async(rowData) => {
+                setBlockActions(true);
 
+     const AthorizationResponse=await IsAthorized(16);
+
+        if(!AthorizationResponse){
+            setMessage("your not Athorized to see transaction Details")
+                    setBlockActions(false);
+return;
+        }
+ 
         // Get the first value of the row
 
         const TransactionData={
@@ -86,7 +107,6 @@ export default function TransactionList(){
             TransactionDate:rowData.transactionDate
         }
 
-        setBlockActions(true);
 
         Navigate(`ShowTransactionDetails?ID=${TransactionData.Id}`,{state:TransactionData})
         
@@ -96,7 +116,8 @@ export default function TransactionList(){
     };
 
  
-    return (<>
+  if(IsUserAthorized){
+      return (<>
 
      {Message&&<h2>{Message}</h2>}
     <GridComponent dataSource={DataSource} allowSorting={true} >
@@ -146,7 +167,10 @@ export default function TransactionList(){
      
 </>
     )
-
+  }
+  else{
+    return <h2>User is not athorized</h2>
+  }
 }
 
     
@@ -161,7 +185,9 @@ export default function TransactionList(){
 
 export async function Loader(){
 
-           return await  GetAllTransactions() 
+           const AllTransactions= await  GetAllTransactions() 
+           const IsUserAthorized=await IsAthorized(4)
+           return {AllTransactions:AllTransactions,IsUserAthorized:IsUserAthorized}
 
 }
 

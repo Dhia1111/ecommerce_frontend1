@@ -5,8 +5,8 @@ import {DeleteUser, GetAllUsers} from "../../APIs/Users.js"
 import { useEffect, useState} from "react";
 import { useLoaderData } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import {IsAthorized}from "../../APIs/Products.js"
 import '@syncfusion/ej2-base/styles/material.css';  
-import '@syncfusion/ej2-buttons/styles/material.css';  
 import '@syncfusion/ej2-calendars/styles/material.css';  
 import '@syncfusion/ej2-dropdowns/styles/material.css';  
 import '@syncfusion/ej2-inputs/styles/material.css';  
@@ -17,14 +17,16 @@ import '@syncfusion/ej2-notifications/styles/material.css';
 import "@syncfusion/ej2-react-grids/styles/material.css";
 import Styles from "./UsersList.module.css"
 
+
 export default function UsersList(){
 
-
-     const [DataSource, setDataSource] = useState([]);
+    const [DataSource, setDataSource] = useState([]);
     const [Message, setMessage] = useState("");
     const [columns, setColumns] = useState([]);
-    const [loaderData,setLoadData] = useState(useLoaderData());
+    const {AllUsers,IsUserAthorized}=useLoaderData();
+    const [loaderData,setLoadData] = useState(AllUsers);
     const [blockAction,setBlockAction]=useState(false);
+    
     const navigate=useNavigate();
     useEffect(() => {
         if (loaderData !== null) {
@@ -75,6 +77,17 @@ export default function UsersList(){
    //Create a new UI to Show Details and requer an spesfic set up for athorization 
     //(show a list of the user othorizations building the arry based on the Athorization byte)
     //
+  
+                        setBlockAction(true);
+
+    const AthorizationResponse=await IsAthorized(1024);
+
+        if(!AthorizationResponse){
+            setMessage("your not Athorized to see User Details")
+            setBlockAction(false)
+            return;
+        }
+
 const Data={
 
                     userID:User.userID,
@@ -93,7 +106,6 @@ const Data={
                     postCodeAndLocation:User.postCodeAndLocation,
          
                 }
-                    setBlockAction(true);
 
         navigate("ShowUserDetails",{state:Data})
         
@@ -107,6 +119,15 @@ const Data={
    //Create a new UI to Show Details and requer an spesfic set up for athorization 
     //(show a list of the user othorizations building the arry based on the Athorization byte)
     //
+    setBlockAction(true)
+      const AthorizationResponse=await IsAthorized(1);
+
+        if(!AthorizationResponse){
+            setMessage("your not Athorized to update Users")
+            setBlockAction(false)
+            return
+        }
+
        const Data={
 
                     userID:User.userID,
@@ -134,10 +155,15 @@ const Data={
     };
 
 
-  
-
       const handleDelete =async(rowData) => {
-        
+        setBlockAction(true)
+        const AthorizationResponse=await IsAthorized(2);
+
+        if(!AthorizationResponse){
+            setMessage("your not Athorized to delete Users")
+            setBlockAction(false)
+            return;
+        }
  
         const ID = rowData.userID;
                         setBlockAction(true);
@@ -156,8 +182,8 @@ const Data={
     };
 
 
-
-    return (<>
+    if(IsUserAthorized){
+         return (<>
 
      {Message&&<h2>{Message}</h2>}
     <GridComponent dataSource={DataSource} >
@@ -215,12 +241,21 @@ const Data={
      
 </>
     )
+    }
+    else{
+        return <h2>User is not Athorized</h2>
+    }
+
+   
 
 }
 
 export async function Loader(){
 
-           return await  GetAllUsers() 
+           const AllUsers= await  GetAllUsers() 
+           const IsUserAthorized=await IsAthorized(2048)
+
+           return {AllUsers:AllUsers,IsUserAthorized:IsUserAthorized}
 
 }
 

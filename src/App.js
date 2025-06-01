@@ -21,7 +21,6 @@ import {Loader as ShowProductBasedOnCatigory} from "./ShowProductListForCatigory
 import ShowCatiory from './ShowProductListForCatigory/ShowProductListForCatigory.jsx';
 import Payment from "./Payment/Payment.jsx"
 import {Loader as PaymentLoader} from"./Payment/Payment.jsx"
-import {Loader as AdmineLoader} from"./AdmineLayout/AdmineLayout.jsx";
 import ErrorElement from './Error/ErrorElement.jsx';
 import { Loader as AddProductLoader } from "./AddProduct/AddProduct.jsx"
 import { Loader as LogOutLoader } from "./LogOut/LogOut.jsx"
@@ -55,7 +54,7 @@ function App() {
       </Route>
       <Route replace={true} path='PaymentStatus'  element={<PaymentStatus/>} loader={PaymentStatusLoader} />  
 
-      <Route path='Admine' element={<AdmineLayOut/>} loader={AdmineLoader}>
+      <Route path='Admine' element={<AdmineLayOut/>} >
   
       <Route  path='UsersManger' > 
 

@@ -47,10 +47,8 @@ return    "Product Adding Failed due to Fetching error"
 
 export async function  UpdateProduct(ProductID,ProductName,ProductPrice,CatigoriesArry,SelectedImage) {
 
-  console.log("Update product Catigories : "+CatigoriesArry)
-
-console.log("PRoduct Price "+ ProductPrice)
  
+  
   const product = {
     "ID": ProductID,
     "Name": ProductName,
@@ -219,6 +217,7 @@ return null
 
 export async function IsAthorized(AthorizationKey) {
   const key=Number(AthorizationKey)
+  console.log("AthorizationKey : "+AthorizationKey)
 
  try{
   const response =await fetch(process.env.REACT_APP_URL_ISATHORIZED+key,{

@@ -283,7 +283,7 @@ else{
 
 export async function Loader({request}) {
 
-    const IsUserAthorized=  await IsAthorized();
+    const IsUserAthorized=  await IsAthorized(64);
     
         if(!IsUserAthorized)   return { IsUserAthorized};
             

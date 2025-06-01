@@ -34,7 +34,7 @@ export default function DeleteProduct(){
 export async function Loader({request}) {
 
 
-    const IsUserAthorized=await IsAthorized();
+    const IsUserAthorized=await IsAthorized(128);
     if(IsUserAthorized===false){
         return {IsUserAthorized}
     }

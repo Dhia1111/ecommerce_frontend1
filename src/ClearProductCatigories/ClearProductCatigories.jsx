@@ -31,7 +31,7 @@ export async function Loader({request}) {
 
  console.log("CLear Catigories ProductLoader : ");
 
-    const IsUserAthorized=await IsAthorized();
+    const IsUserAthorized=await IsAthorized(512);
     if(IsUserAthorized===false){
         return {IsUserAthorized}
     }
